@@ -7,7 +7,7 @@
 		body {
 			margin: 0;
 			overflow: hidden;
-			background-color: black;
+			background-color: #284D6D;
 			color: white; overflow: auto; font-family: Arial;
 		}
 		@media only screen and (max-width: 992px) {
@@ -19,7 +19,7 @@
 			}
 		}
 		#header {
-			background-color: gray;
+			background-color: #3C8BB5;
 			text-align: right;
 			padding: .5em;
 		}
@@ -38,7 +38,7 @@
 			}
 		}
 		.links:hover {
-			background-color: black;
+			background-color: #1D1D36;
 		}
 		
 		/* ---------------------------------- */
@@ -166,6 +166,14 @@
 			input[type="radio"] {
 				transform: scale(1.5); margin-right: .5em;
 			}
+			#us-stats-desktop {
+				display: none;
+			}
+		}
+		@media only screen and (min-width: 992px) {
+			#us-stats-mobile {
+				display: none;
+			}
 		}
 	</style>
 	<script>
@@ -180,6 +188,37 @@
 		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
 	</div>
 	<h1 style="text-align: center;">The United States</h1>
+	<table id="us-stats-desktop">
+		<tbody>
+			<tr>
+				<th style="background-color: #1D1D36">Positive Cases</th>
+				<th style="background-color: #1D1D36">Recovered Cases</th>
+				<th style="background-color: #1D1D36">Deaths</th>
+			</tr>
+			<tr>
+				<th>7,790,263</th>
+				<th>4,998,377</th>
+				<th>217,130</th>
+			</tr>
+		</tbody>
+	</table>
+	<table id="us-stats-mobile">
+		<tbody>
+			<tr>
+				<th style="background-color: #1D1D36">Positive Cases</th>
+				<th>36,297,838</th>
+			</tr>
+			<tr>
+				<th style="background-color: #1D1D36">Recovered Cases</th>
+				<th>27,314,855</th>
+			</tr>
+			<tr>
+				<th style="background-color: #1D1D36">Deaths</th>
+				<th>1,058,130</th>
+			</tr>
+		</tbody>
+	</table>
+	<br><br>
 	<div id="image">
 		<img src="https://i.imgur.com/E4tfCmh.png">
 	</div>
@@ -201,19 +240,19 @@
 		<table>
 			<tbody>
 				<tr>
-					<th style="background-color: gray">Positive Cases</th>
+					<th style="background-color: #1D1D36">Positive Cases</th>
 				</tr>
 				<tr>
 					<th>326,142</th>
 				</tr>
 				<tr>
-					<th style="background-color: gray">Recovered Cases</th>
+					<th style="background-color: #1D1D36">Recovered Cases</th>
 				</tr>
 				<tr>
 					<th>120,042</th>
 				</tr>
 				<tr>
-					<th style="background-color: gray">Deaths</th>
+					<th style="background-color: #1D1D36">Deaths</th>
 				</tr>
 				<tr>
 					<th>7,259</th>
@@ -242,23 +281,23 @@
 	<br>
 	<table>
 		<tr>
-			<th style="background-color: gray">Appling</th>
+			<th style="background-color: #1D1D36">Appling</th>
 			<th>Resources</th>
 		</tr>
 		<tr>
-			<th style="background-color: gray">Atkinson</th>
+			<th style="background-color: #1D1D36">Atkinson</th>
 			<th>Resources</th>
 		</tr>
 		<tr>
-			<th style="background-color: gray">Bacon</th>
+			<th style="background-color: #1D1D36">Bacon</th>
 			<th>Resources</th>
 		</tr>
 		<tr>
-			<th style="background-color: gray">Baker</th>
+			<th style="background-color: #1D1D36">Baker</th>
 			<th>Resources</th>
 		</tr>
 		<tr>
-			<th style="background-color: gray">Baldwin</th>
+			<th style="background-color: #1D1D36">Baldwin</th>
 			<th>Resources</th>
 		</tr>
 	</table>
