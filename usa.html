@@ -1,0 +1,267 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>US Resources - COVID-19 Travel Guide</title>
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+			background-color: black;
+			color: white; overflow: auto; font-family: Arial;
+		}
+		@media only screen and (max-width: 992px) {
+			table, thead, tbody, tr, th, td {
+				display: block; text-align: left;
+			}
+			h1 {
+				font-size: 3em;
+			}
+		}
+		#header {
+			background-color: gray;
+			text-align: right;
+			padding: .5em;
+		}
+		.links {
+			margin-top: 0;
+			margin-right: 1em;
+			display: inline;
+			padding: .5em;
+		}
+		@media only screen and (max-width: 992px) {
+			#header {
+				text-align: center; display: flex; padding: 0;
+			}
+			.links {
+				margin: 0 1em 0 1em; text-align: center; width: 50%; font-size: 1.3em;
+			}
+		}
+		.links:hover {
+			background-color: black;
+		}
+		
+		/* ---------------------------------- */
+		
+		#image {
+			width: 90em;
+			margin: auto;
+		}
+		#image img {
+			height: 50%; width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+		@media only screen and (max-width: 992px) {
+			#image img {
+				display: none;
+			}
+		}
+		@media only screen and (min-width: 993px) {
+			#mobile-table {
+				display: none;
+			}
+		}
+		
+		#states {
+			width: 90%;
+			display: block;
+			margin: auto;
+			font-size: 3em;
+			text-align: center;
+		}
+		
+		/* ---------------------------------- */
+		
+		p {
+			display: inline;
+		}
+		table {
+			border: 1px solid white;
+			margin: auto;
+			width: 90%; table-layout: fixed;
+		}
+		th {
+			border: 1px solid white;
+			padding: 1em;
+		}
+		#section {
+			margin: auto;
+			width: 90%;
+			display: flex;
+		}
+		@media only screen and (max-width: 992px) {
+			#section {
+				display: block;
+			}
+		}
+		#section div {
+			/* background-color: red; */
+			/* border: 1px solid white; */ 
+		}
+		#countries-name {
+			text-align: center;
+		}
+		#countries-bio {
+			margin-top: 1.5em;
+			margin-left: 1em;
+			width: 40%;
+		}
+		#countries-bio p {
+			font-size: .8em;
+		}
+		@media only screen and (max-width: 992px) {
+			#countries-bio {
+				display: block; margin-top: -1.3em;  margin-left: 0; width: 100%; font-size: 1em; text-align: center;
+			}
+			#countries-bio p {
+			}
+		}
+		#section-2 {
+			margin: auto;
+			width: 30%;
+		}
+		@media only screen and (max-width: 992px) {
+			#section-2 {
+				display: block; margin: auto; width: 100%;
+			}
+		}
+		#parameters {
+			margin-left: 1em;
+		}
+		#search {
+			width: 100%;
+			display: flex;
+		}
+		@media only screen and (max-width: 992px) {
+			#search {
+				display: block; margin: auto; width: 90%; text-align: center;
+			}
+			#parameters {
+				width: 100%; text-align: center; margin: auto; padding-top: 1em;
+			}
+			#parameters label {
+				width: 100%; margin-right: .9em;
+			}
+			#parameters p {
+				margin-right: 1em; margin-left: 1em;
+			}
+			#parameters input {
+			}
+			#states2 {
+				display: none;
+			}
+		}
+		#search input {
+			width: 100%;
+		}
+		@media only screen and (max-width: 992px) {
+			#search input {
+				text-align: center; width: 90%; 
+			}
+			input[type="text"] {
+				font-size: 3em;
+			}
+			input[type="radio"] {
+				transform: scale(1.5); margin-right: .5em;
+			}
+		}
+	</style>
+	<script>
+		// In mobile, second table is converted to a single column and row table with each cell containing a name. When a cell is clicked, relevant information "drops down"
+		
+	</script>
+</head>
+<body>
+	<div id="header">
+		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
+		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
+		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
+	</div>
+	<h1 style="text-align: center;">The United States</h1>
+	<div id="image">
+		<img src="https://i.imgur.com/E4tfCmh.png">
+	</div>
+	<div id="mobile-table">
+		<select id="states" name="states">
+			<option value="georgia">Georgia</option>
+			<option value="alabama">Alabama</option>
+			<option value="alaska">Alaska</option>
+			<option value="arizona">Arizona</option>
+			<option value="arkansas">Arkansas</option>
+			<option value="california">California</option>
+			<option value="colorado">Colorado</option>
+			<option value="connecticut">Connecticut</option>
+			<option value="delaware">Delaware</option>
+			<option value="florida">Florida</option>
+		</select>
+		<br>
+		<!-- <h2 style="text-align: center;">Georgia</h2> -->
+		<table>
+			<tbody>
+				<tr>
+					<th style="background-color: gray">Positive Cases</th>
+				</tr>
+				<tr>
+					<th>326,142</th>
+				</tr>
+				<tr>
+					<th style="background-color: gray">Recovered Cases</th>
+				</tr>
+				<tr>
+					<th>120,042</th>
+				</tr>
+				<tr>
+					<th style="background-color: gray">Deaths</th>
+				</tr>
+				<tr>
+					<th>7,259</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<h1 style="text-align: center;">Public Health Resources for Every County</h1>
+	<div id="section-2">
+		<div id="search">
+			<input type="text" placeholder="Search">
+			<select id="states2" name="states2">
+				<option value="georgia">Georgia</option>
+				<option value="alabama">Alabama</option>
+				<option value="alaska">Alaska</option>
+				<option value="arizona">Arizona</option>
+				<option value="arkansas">Arkansas</option>
+				<option value="california">California</option>
+				<option value="colorado">Colorado</option>
+				<option value="connecticut">Connecticut</option>
+				<option value="delaware">Delaware</option>
+				<option value="florida">Florida</option>
+			</select>
+		</div>
+	</div>
+	<br>
+	<table>
+		<tr>
+			<th style="background-color: gray">Appling</th>
+			<th>Resources</th>
+		</tr>
+		<tr>
+			<th style="background-color: gray">Atkinson</th>
+			<th>Resources</th>
+		</tr>
+		<tr>
+			<th style="background-color: gray">Bacon</th>
+			<th>Resources</th>
+		</tr>
+		<tr>
+			<th style="background-color: gray">Baker</th>
+			<th>Resources</th>
+		</tr>
+		<tr>
+			<th style="background-color: gray">Baldwin</th>
+			<th>Resources</th>
+		</tr>
+	</table>
+	<br>
+</body>
+</html>

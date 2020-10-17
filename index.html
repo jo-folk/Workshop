@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>COVID-19 Travel Guide</title>
 	<style>
+	
+		/* Horizontal scroll thing looks weird on some devices so needs to be fixed */
+	
 		body {
 			margin: 0;
 			overflow: hidden;
@@ -28,221 +31,234 @@
 			margin-right: 1em;
 			display: inline;
 			padding: .5em;
+			cursor: pointer;
+		}
+		@media only screen and (max-width: 992px) {
+			#header {
+				text-align: center; display: flex; padding: 0;
+			}
+			.links {
+				margin: 0 1em 0 1em; text-align: center; width: 50%; font-size: 1.3em;
+			}
 		}
 		.links:hover {
 			background-color: black;
 		}
-		p {
-			display: inline;
-		}
-		table {
-			border: 1px solid white;
-			margin: auto;
-			width: 90%; table-layout: fixed;
-		}
-		th {
-			border: 1px solid white;
-			padding: 1em;
-		}
+		
+		/* --------------------- */
+		
 		#section {
+			width: 50%;
+			height: 20em;
 			margin: auto;
-			width: 90%;
-			display: flex;
+			text-align: center;
+			margin-top: 1em;
+			padding: .5em;
+			border-radius: 1em;
+		}
+		#section img {
+			height: 100%; width: 100%;
+			object-fit: cover;
+			border-radius: .2em;
+		}
+		#mainsection:hover img {
+			opacity: .7;
+		}
+		#section2 {
+			margin: auto;
+			margin-top: 1.5em;
+			width: 50%;
+			height: 20em;
+			opacity: .8;
+			cursor: pointer;
 		}
 		@media only screen and (max-width: 992px) {
 			#section {
-				display: block;
+				width: 90%;
 			}
 		}
-		#section div {
-			/* background-color: red; */
-			/* border: 1px solid white; */ 
-		}
-		#countries-name {
+		#section2 {
 			text-align: center;
+			background-color: black;
+			border-radius: .2em;
 		}
-		#countries-bio {
-			margin-top: 1.5em;
-			margin-left: 1em;
-			width: 40%;
+		@media only screen and (max-width: 992px) {
+			#section2 {
+				width: 90%;
+			}
 		}
-		#countries-bio p {
+		h2 {
+			margin-top: 1em;
+			margin-left: .5em;
+			margin-right: .5em;
+		}
+		#section2 a, .mainsection2-thing2 a {
+			margin: 1em 0 0 1em;
 			font-size: .8em;
 		}
+		#mainsection {
+			display: grid;
+		}
+		#section, #section2 {
+			grid-area: 1 / 1;
+		}
+		#mainsection2 {
+			display: flex;
+			width: 90%;
+			margin: auto;
+		}
+		#mainsection2 div {
+			margin: 1em auto 0 auto;
+			height: 20em;
+			width: 33em;
+			background-color: black;
+		}
+		h1 {
+			width: 90%;
+			margin-left: 3em;
+		}
 		@media only screen and (max-width: 992px) {
-			#countries-bio {
-				display: block; margin-top: -1.3em;  margin-left: 0; width: 100%; font-size: 1em; text-align: center;
-			}
-			#countries-bio p {
+			h1 {
+				margin-left: 0;
+				width: 100%;
+				text-align: center;
 			}
 		}
-		#section-2 {
+		.mainsection2-thing {
+			display: grid;
+			cursor: pointer;
+		}
+		.mainsection2-thing img {
+			height: 100%; width: 100%;
+			object-fit: cover;
+		}
+		.mainsection2-thing div {
 			margin: auto;
-			width: 90%;
+			margin-bottom: 20em;
+			width: 50%;
+			height: 20em;
+		}
+		.mainsection2-thing2, .potato {
+			grid-area: 1 / 1;
+		}
+		.mainsection2-thing2 {
+			opacity: .7;
+			text-align: center;
+		}
+		.mainsection2-thing:hover img {
+			opacity: .3;
+		}
+		@media only screen and (max-width: 992px) {
+			#mainsection2 {
+				overflow-x: scroll;
+				overflow-y: hidden;
+				white-space: nowrap;
+			
+				.mainsection2-thing {
+					display: inline-block;
+				}
+			}
+			.mainsection2-thing2 p, .mainsection2-thing2 a {
+				display: none;
+			}
+			.mainsection2-thing2 h2 {
+				white-space: normal;
+			}
+		}
+		#mainsection3 {
+			width: 60%;
+			margin: auto;
 			display: flex;
 		}
-		@media only screen and (max-width: 992px) {
-			#section-2 {
-				display: block; margin: auto; width: 100%;
-			}
-		}
-		#parameters {
-			margin-left: 1em;
-		}
-		#search {
+		#mainsection3 ul {
 			width: 50%;
+			text-align: left;
+			line-height: 2;
 		}
 		@media only screen and (max-width: 992px) {
-			#search {
-				display: block; margin: auto; width: 90%; text-align: center;
+			#mainsection3 {
+				width: 90%;
+				display: block;
 			}
-			#parameters {
-				width: 100%; text-align: center; margin: auto; padding-top: 1em;
-			}
-			#parameters label {
-				width: 100%; margin-right: 1em;
-			}
-			#parameters p {
-				margin-right: 1em; margin-left: 1em;
-			}
-			#parameters input {
+			#mainsection3 ul {
+				width: 90%;
+				margin: auto;
 			}
 		}
-		#search input {
-			width: 100%;
-		}
-		@media only screen and (max-width: 992px) {
-			#search input {
-				text-align: center; width: 90%; 
-			}
-			input[type="text"] {
-				font-size: 3em;
-			}
-			input[type="radio"] {
-				transform: scale(1.5); margin-right: .5em;
-			}
+		a {
+			color: white;
 		}
 	</style>
 	<script>
-		// In mobile, second table is converted to a single column and row table with each cell containing a name. When a cell is clicked, relevant information "drops down"
-		
 	</script>
 </head>
 <body>
 	<div id="header">
-		<p class="links">Home</p>
-		<p class="links">U.S.A.</p>
-		<p class="links">World</p>
+		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
+		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
+		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
 	</div>
-	<h1 style="text-align: center;">World COVID-19 Statistics</h1>
-	<table>
-		<tbody>
-			<tr>
-				<th style="background-color: gray">Positive Cases</th>
-				<th>36,297,838</th>
-			</tr>
-			<tr>
-				<th style="background-color: gray">Recovered Cases</th>
-				<th>27,314,855</th>
-			</tr>
-			<tr>
-				<th style="background-color: gray">Deaths</th>
-				<th>1,058,130</th>
-			</tr>
-		</tbody>
-	</table>
-	<br>
-	<div id="section">
-		<div id="countries-name">
-			<h1>Countries</h1>
+	
+	<div id="mainsection">
+		<div id="section">
+			<img src="https://cdn.cnn.com/cnnnext/dam/assets/201014085652-02-covid-19-aguirre-family-phoenix-screengrab-exlarge-169.jpg"> <!-- interchangable image -->
 		</div>
-		<div id="countries-bio">
-			<p>Statistics from: https://www.worldometers.info/coronavirus/?utm_campaign=homeAdvegas1?<br>https://www.cdc.gov/coronavirus/2019-ncov/travelers/map-and-travel-notices.html</p>
+		<div id="section2">
+			<h2>Arizona family lost their business -- and eight family members -- to Covid-19</h2>
+			<p>By Miguel Marquez, Meridith Edwards and Theresa Waldrop, CNN</p>
+			<a href="https://www.cnn.com/2020/10/14/us/phoenix-arizona-aguirre-family-covid-deaths/index.html">https://www.cnn.com/2020/10/14/us/phoenix-arizona-aguirre-family-covid-deaths/index.html</a>
 		</div>
 	</div>
+	
 	<br>
-	<div id="section-2">
-		<div id="search">
-			<input type="text" placeholder="Search">
+	<h1>Recent Travel News</h1>
+	<div id="mainsection2">
+		<div class="mainsection2-thing">
+			<div class="potato">
+				<img src="https://media2.s-nbcnews.com/j/newscms/2020_41/3419044/201010-north-dakota-coronavirus-mn-1340_0a4751f54f3fe4194f379b1fd0eea98d.fit-2000w.JPG">
+			</div>
+			<div class="mainsection2-thing2">
+				<h2>As US cases rise, Trump's policy panned as a 'dangerous fallacy'</h2>
+				<p>By Steve Benen, MSNBC</p>
+				<a href="https://www.msnbc.com/rachel-maddow-show/us-cases-rise-trump-s-policy-panned-dangerous-fallacy-n1243513">https://www.msnbc.com/rachel-maddow-show/us-cases-rise-trump-s-policy-panned-dangerous-fallacy-n1243513</a>
+			</div>
 		</div>
-		<div id="parameters">
-			<p>Sort:</p>
-				<input type="radio" name="parameter" value="1" checked>
-				<label>Alphabetical Order</label>
-				<input type="radio" name="parameter" value="2">
-				<label>Case Numbers</label>
+		<div class="mainsection2-thing">
+			<div class="potato">
+				<img src="https://a57.foxnews.com/cf-images.us-east-1.prod.boltdns.net/v1/static/694940094001/bf8cd1e9-236d-4412-9d03-b393df46e309/10d582bf-98cd-4f96-b248-841add2f169a/1280x720/match/931/524/image.jpg?ve=1&tl=1">
+			</div>
+			<div class="mainsection2-thing2">
+				<h2>Trudeau: US-Canada border to remain closed until coronavirus is under control</h2>
+				<p>By Paul Best, Fox News</p>
+				<a href="https://www.foxnews.com/world/trudeau-border-closed-coronavirus-under-control">https://www.foxnews.com/world/trudeau-border-closed-coronavirus-under-control</a>
+			</div>
+		</div>
+		<div class="mainsection2-thing">
+			<div class="potato">
+				<img src="https://images.wsj.net/im-243923?width=620&size=1.5">
+			</div>
+			<div class="mainsection2-thing2">
+				<h2>Anthony Fauci Urges Americans To Reconsider Thanksgiving Gatherings Amid Pandemic</h2>
+				<p>By Lee Moran, Huffington Post</p>
+				<a href="https://www.huffpost.com/entry/anthony-fauci-thanksgiving-warning-coronavirus_n_5f882a08c5b6c5eccffdd3f9?ncid=engmodushpmg00000004">https://www.huffpost.com/entry/anthony-fauci-thanksgiving-warning-coronavirus_n_5f882a08c5b6c5eccffdd3f9?ncid=engmodushpmg00000004</a>
+			</div>
 		</div>
 	</div>
+	
+	<br><br>
+	<h1>COVID-19 Travel Tips</h1>
+	<div id="mainsection3">
+		<ul>
+			<li>Clean your hands often, either with soap and water for 20 seconds or a hand sanitizer that contains at least 60% alcohol.</li>
+			<li>Avoid close contact with people who are sick.</li>
+			<li>Put distance between yourself and other people (at least 6 feet)</li>
+		</ul>
+		<ul>
+			<li>Cover your mouth and nose with a mask when around others.</li>
+			<li>Cover your cough or sneeze with a tissue, then throw the tissue in the trash.</li>
+			<li>Clean and disinfect frequently touched objects and surfaces daily.</li>	
+		</ul>
+	</div>
 	<br>
-	<table>
-		<tbody>
-			<tr>
-				<th colspan="2" style="background-color: gray; text-align: center; font-size: 1.3em;">Afghanistan</th>
-			</tr>
-			<tr>
-				<th style="background-color: gray">Positive Cases</th>
-				<th>39,548</th>
-			</tr>
-			<tr>
-				<th style="background-color: gray">Recovered Cases</th>
-				<th>33,045</th>			
-			</tr>
-			<tr>
-				<th style="background-color: gray">Deaths</th>
-				<th>1,469</th>			
-			</tr>
-			<tr>
-				<th style="background-color: gray">Travel Advisory Level</th>
-				<th>High</th>			
-			</tr>
-		</tbody>
-	</table>
-	<table>
-		<tbody>
-			<tr>
-				<th colspan="2" style="background-color: gray; text-align: center; font-size: 1.3em;">Albania</th>
-			</tr>
-			<tr>
-				<th style="background-color: gray">Positive Cases</th>
-				<th>14,730</th>
-			</tr>
-			<tr>
-				<th style="background-color: gray">Recovered Cases</th>
-				<th>9,115</th>			
-			</tr>
-			<tr>
-				<th style="background-color: gray">Deaths</th>
-				<th>407</th>			
-			</tr>
-			<tr>
-				<th style="background-color: gray">Travel Advisory Level</th>
-				<th>High</th>			
-			</tr>
-		</tbody>
-	</table>
-	<table>
-		<tbody>
-			<tr>
-				<th colspan="2" style="background-color: gray; text-align: center; font-size: 1.3em;">Algeria</th>
-			</tr>
-			<tr>
-				<th style="background-color: gray">Positive Cases</th>
-				<th>52,520</th>
-			</tr>
-			<tr>
-				<th style="background-color: gray">Recovered Cases</th>
-				<th>36,857</th>			
-			</tr>
-			<tr>
-				<th style="background-color: gray">Deaths</th>
-				<th>1,771</th>			
-			</tr>
-			<tr>
-				<th style="background-color: gray">Travel Advisory Level</th>
-				<th>High</th>			
-			</tr>
-		</tbody>
-	</table>
-	<br><br><br>
 </body>
 </html>
