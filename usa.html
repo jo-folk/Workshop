@@ -6,11 +6,12 @@
 	<style>
 		body {
 			margin: 0;
-			overflow: hidden;
 			background-color: #284D6D;
-			color: white; overflow: auto; font-family: Arial;
+			color: white; 
+			overflow: auto; 
+			font-family: Arial;
 		}
-		@media only screen and (max-width: 992px) {
+		@media only screen and (max-width: 992px) { /* Transform resources table into hamburger on mobile, unlike other tables on page there's no alternates to switch between */
 			table, thead, tbody, tr, th, td {
 				display: block; text-align: left;
 			}
@@ -29,7 +30,7 @@
 			display: inline;
 			padding: .5em;
 		}
-		@media only screen and (max-width: 992px) {
+		@media only screen and (max-width: 992px) { /* Adjust header on mobile */
 			#header {
 				text-align: center; display: flex; padding: 0;
 			}
@@ -43,23 +44,23 @@
 		
 		/* ---------------------------------- */
 		
-		#image {
+		#map {
 			width: 90em;
 			margin: auto;
 		}
-		#image img {
+		#map img {
 			height: 50%; width: 50%;
 			margin-left: auto;
 			margin-right: auto;
 			display: block;
 		}
-		@media only screen and (max-width: 992px) {
-			#image img {
+		@media only screen and (max-width: 992px) { /* Removes map on mobile */
+			#map img {
 				display: none;
 			}
 		}
-		@media only screen and (min-width: 993px) {
-			#mobile-table {
+		@media only screen and (min-width: 993px) { /* Removes mobile table on desktop */
+			#states-stats-mobile {
 				display: none;
 			}
 		}
@@ -86,49 +87,14 @@
 			border: 1px solid white;
 			padding: 1em;
 		}
-		#section {
-			margin: auto;
-			width: 90%;
-			display: flex;
-		}
-		@media only screen and (max-width: 992px) {
-			#section {
-				display: block;
-			}
-		}
-		#section div {
-			/* background-color: red; */
-			/* border: 1px solid white; */ 
-		}
-		#countries-name {
-			text-align: center;
-		}
-		#countries-bio {
-			margin-top: 1.5em;
-			margin-left: 1em;
-			width: 40%;
-		}
-		#countries-bio p {
-			font-size: .8em;
-		}
-		@media only screen and (max-width: 992px) {
-			#countries-bio {
-				display: block; margin-top: -1.3em;  margin-left: 0; width: 100%; font-size: 1em; text-align: center;
-			}
-			#countries-bio p {
-			}
-		}
-		#section-2 {
+		#resources-section {
 			margin: auto;
 			width: 30%;
 		}
 		@media only screen and (max-width: 992px) {
-			#section-2 {
+			#resources-section {
 				display: block; margin: auto; width: 100%;
 			}
-		}
-		#parameters {
-			margin-left: 1em;
 		}
 		#search {
 			width: 100%;
@@ -138,18 +104,7 @@
 			#search {
 				display: block; margin: auto; width: 90%; text-align: center;
 			}
-			#parameters {
-				width: 100%; text-align: center; margin: auto; padding-top: 1em;
-			}
-			#parameters label {
-				width: 100%; margin-right: .9em;
-			}
-			#parameters p {
-				margin-right: 1em; margin-left: 1em;
-			}
-			#parameters input {
-			}
-			#states2 {
+			#states-resources { /* Removes dropdown menu for selecting states normally on desktop next to search in resources section; the first dropdown on mobile is what state is selected and resources displayed */
 				display: none;
 			}
 		}
@@ -163,37 +118,47 @@
 			input[type="text"] {
 				font-size: 3em;
 			}
-			input[type="radio"] {
-				transform: scale(1.5); margin-right: .5em;
-			}
-			#us-stats-desktop {
+			#us-stats-desktop { /* Different tables for overall US stats displayed on desktop and mobile */
 				display: none;
 			}
 		}
 		@media only screen and (min-width: 992px) {
-			#us-stats-mobile {
+			#us-stats-mobile { /* Different tables for overall US stats displayed on desktop and mobile */
 				display: none;
 			}
 		}
+		#header a {
+			color: white;
+			text-decoration: none;
+		}
+		.table-header {
+			background-color: #1D1D36;
+		}
+		h1 {
+			text-align: center;
+		}
 	</style>
-	<script>
-		// In mobile, second table is converted to a single column and row table with each cell containing a name. When a cell is clicked, relevant information "drops down"
-		
+	<script>		
 	</script>
 </head>
 <body>
 	<div id="header">
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
 	</div>
-	<h1 style="text-align: center;">The United States</h1>
+	
+	<!-- ------------------------------ -->
+	
+	<!-- Overall US stats with different tables displayed depending if user is on desktop or mobile through media query and "display: none;" -->
+	
+	<h1>The United States</h1>
 	<table id="us-stats-desktop">
 		<tbody>
 			<tr>
-				<th style="background-color: #1D1D36">Positive Cases</th>
-				<th style="background-color: #1D1D36">Recovered Cases</th>
-				<th style="background-color: #1D1D36">Deaths</th>
+				<th class="table-header">Positive Cases</th>
+				<th class="table-header">Recovered Cases</th>
+				<th class="table-header">Deaths</th>
 			</tr>
 			<tr>
 				<th>7,790,263</th>
@@ -205,24 +170,34 @@
 	<table id="us-stats-mobile">
 		<tbody>
 			<tr>
-				<th style="background-color: #1D1D36">Positive Cases</th>
+				<th class="table-header">Positive Cases</th>
 				<th>36,297,838</th>
 			</tr>
 			<tr>
-				<th style="background-color: #1D1D36">Recovered Cases</th>
+				<th class="table-header">Recovered Cases</th>
 				<th>27,314,855</th>
 			</tr>
 			<tr>
-				<th style="background-color: #1D1D36">Deaths</th>
+				<th class="table-header">Deaths</th>
 				<th>1,058,130</th>
 			</tr>
 		</tbody>
 	</table>
+	
+	<!-- ------------------------------ -->
+	
+	<!-- Map, make interactive later -->
+	
 	<br><br>
-	<div id="image">
+	<div id="map">
 		<img src="https://i.imgur.com/E4tfCmh.png">
 	</div>
-	<div id="mobile-table">
+	
+	<!-- ------------------------------ -->
+	
+	<!-- Table only shown on mobile that displays stats for a state in place of hovering over a map -->
+	
+	<div id="states-stats-mobile">
 		<select id="states" name="states">
 			<option value="georgia">Georgia</option>
 			<option value="alabama">Alabama</option>
@@ -236,23 +211,22 @@
 			<option value="florida">Florida</option>
 		</select>
 		<br>
-		<!-- <h2 style="text-align: center;">Georgia</h2> -->
 		<table>
 			<tbody>
 				<tr>
-					<th style="background-color: #1D1D36">Positive Cases</th>
+					<th class="table-header">Positive Cases</th>
 				</tr>
 				<tr>
 					<th>326,142</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Recovered Cases</th>
+					<th class="table-header">Recovered Cases</th>
 				</tr>
 				<tr>
 					<th>120,042</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Deaths</th>
+					<th class="table-header">Deaths</th>
 				</tr>
 				<tr>
 					<th>7,259</th>
@@ -260,11 +234,18 @@
 			</tbody>
 		</table>
 	</div>
-	<h1 style="text-align: center;">Public Health Resources for Every County</h1>
-	<div id="section-2">
+	
+	<!-- ------------------------------ -->
+	
+	<!-- Resources from API displayed for each county -->
+	<!-- On desktop, there's a search bar and a list dropdown, the latter is how the user selects a state where then its counties and their resources are displayed -->
+	<!-- On mobile, there's just a search bar. The state selected is from #states select element above in this case -->
+	
+	<h1>Public Health Resources for Every County</h1>
+	<div id="resources-section">
 		<div id="search">
 			<input type="text" placeholder="Search">
-			<select id="states2" name="states2">
+			<select id="states-resources" name="states-resources">
 				<option value="georgia">Georgia</option>
 				<option value="alabama">Alabama</option>
 				<option value="alaska">Alaska</option>
@@ -279,28 +260,29 @@
 		</div>
 	</div>
 	<br>
-	<table>
+	<table> <!-- Table transforms into a hamburger on mobile -->
 		<tr>
-			<th style="background-color: #1D1D36">Appling</th>
+			<th class="table-header">Appling</th>
 			<th>Resources</th>
 		</tr>
 		<tr>
-			<th style="background-color: #1D1D36">Atkinson</th>
+			<th class="table-header">Atkinson</th>
 			<th>Resources</th>
 		</tr>
 		<tr>
-			<th style="background-color: #1D1D36">Bacon</th>
+			<th class="table-header">Bacon</th>
 			<th>Resources</th>
 		</tr>
 		<tr>
-			<th style="background-color: #1D1D36">Baker</th>
+			<th class="table-header">Baker</th>
 			<th>Resources</th>
 		</tr>
 		<tr>
-			<th style="background-color: #1D1D36">Baldwin</th>
+			<th class="table-header">Baldwin</th>
 			<th>Resources</th>
 		</tr>
 	</table>
 	<br>
+	
 </body>
 </html>

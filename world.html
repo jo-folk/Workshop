@@ -6,12 +6,13 @@
 	<style>
 		body {
 			margin: 0;
-			overflow: hidden;
 			background-color: #284D6D;
-			color: white; overflow: auto; font-family: Arial;
+			color: white; 
+			overflow: auto; 
+			font-family: Arial; /* Use different font later */
 		}
 		@media only screen and (max-width: 992px) {
-			table, thead, tbody, tr, th, td {
+			table, thead, tbody, tr, th, td { /* Transforms tables into hamburgers; even though different tables are loaded between desktop and mobile this is still needed until fixed */
 				display: block; text-align: left;
 			}
 			h1 {
@@ -62,10 +63,6 @@
 				display: block;
 			}
 		}
-		#section div {
-			/* background-color: red; */
-			/* border: 1px solid white; */ 
-		}
 		#countries-name {
 			text-align: center;
 		}
@@ -81,16 +78,14 @@
 			#countries-bio {
 				display: block; margin-top: -1.3em;  margin-left: 0; width: 100%; font-size: 1em; text-align: center;
 			}
-			#countries-bio p {
-			}
 		}
-		#section-2 {
+		#search-sort-section {
 			margin: auto;
 			width: 90%;
 			display: flex;
 		}
 		@media only screen and (max-width: 992px) {
-			#section-2 {
+			#search-sort-section {
 				display: block; margin: auto; width: 100%;
 			}
 		}
@@ -113,8 +108,6 @@
 			#parameters p {
 				margin-right: 1em; margin-left: 1em;
 			}
-			#parameters input {
-			}
 		}
 		#search input {
 			width: 100%;
@@ -129,7 +122,7 @@
 			input[type="radio"] {
 				transform: scale(1.5); margin-right: .5em;
 			}
-			#desktop-table {
+			#desktop-countries-table {
 				display: none;
 			}
 			#desktop-world-table {
@@ -137,39 +130,54 @@
 			}
 		}
 		@media only screen and (min-width: 993px) {
-			#mobile-tables {
+			#mobile-countries-table {
 				display: none;
 			}
 			#mobile-world-table {
 				display: none;
 			}
 		}
+		#header a {
+			color: white;
+			text-decoration: none;
+		}
+		.table-header {
+			background-color: #1D1D36;
+		}
+		.mobile-table-header-name {
+			background-color: #1D1D36;
+			text-align: center; 
+			font-size: 1.3em;
+		}
 	</style>
 	<script>
-		// In mobile, second table is converted to a single column and row table with each cell containing a name. When a cell is clicked, relevant information "drops down"
-		
 	</script>
 </head>
 <body>
 	<div id="header">
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
 	</div>
 	<h1 style="text-align: center;">World COVID-19 Statistics</h1>
-	<div id="mobile-world-table">
+	
+	<!-- ---------------------------- -->
+	
+	<!-- Global world stats shown at top of page -->
+
+	<div id="mobile-world-table"> <!-- Looks different without CSS media query rule that changes it into a hamburger -->
 		<table>
 			<tbody>
 				<tr>
-					<th style="background-color: #1D1D36">Positive Cases</th>
+					<th class="table-header">Positive Cases</th>
 					<th>36,297,838</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Recovered Cases</th>
+					<th class="table-header">Recovered Cases</th>
 					<th>27,314,855</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Deaths</th>
+					<th class="table-header">Deaths</th>
 					<th>1,058,130</th>
 				</tr>
 			</tbody>
@@ -179,9 +187,9 @@
 		<table>
 			<tbody>
 				<tr>
-					<th style="background-color: #1D1D36">Positive Cases</th>
-					<th style="background-color: #1D1D36">Recovered Cases</th>
-					<th style="background-color: #1D1D36">Deaths</th>
+					<th class="table-header">Positive Cases</th>
+					<th class="table-header">Recovered Cases</th>
+					<th class="table-header">Deaths</th>
 				</tr>
 				<tr>
 					<th>36,297,838</th>
@@ -192,6 +200,11 @@
 		</table>
 	</div>
 	<br>
+	
+	<!-- ---------------------------- -->
+	
+	<!-- Search bar and sort parameters for tables -->
+	
 	<div id="section">
 		<div id="countries-name">
 			<h1>Countries</h1>
@@ -201,7 +214,7 @@
 		</div>
 	</div>
 	<br>
-	<div id="section-2">
+	<div id="search-sort-section">
 		<div id="search">
 			<input type="text" placeholder="Search">
 		</div>
@@ -213,27 +226,32 @@
 				<label>Case Numbers</label>
 		</div>
 	</div>
+	
+	<!-- ---------------------------- -->
+	
+	<!-- Countries tables, different one loaded between desktop and mobile -->
+	
 	<br>
-	<div id="mobile-tables">
+	<div id="mobile-countries-table">
 		<table>
 			<tbody>
 				<tr>
-					<th colspan="2" style="background-color: #1D1D36; text-align: center; font-size: 1.3em;">Afghanistan</th>
+					<th colspan="2" class="mobile-table-header-name">Afghanistan</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Positive Cases</th>
+					<th class="table-header">Positive Cases</th>
 					<th>39,548</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Recovered Cases</th>
+					<th class="table-header">Recovered Cases</th>
 					<th>33,045</th>			
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Deaths</th>
+					<th class="table-header">Deaths</th>
 					<th>1,469</th>			
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Travel Advisory Level</th>
+					<th class="table-header">Travel Advisory Level</th>
 					<th>High</th>			
 				</tr>
 			</tbody>
@@ -242,60 +260,61 @@
 		<table>
 			<tbody>
 				<tr>
-					<th colspan="2" style="background-color: #1D1D36; text-align: center; font-size: 1.3em;">Albania</th>
+					<th colspan="2" class="mobile-table-header-name">Albania</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Positive Cases</th>
+					<th class="table-header">Positive Cases</th>
 					<th>14,730</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Recovered Cases</th>
+					<th class="table-header">Recovered Cases</th>
 					<th>9,115</th>			
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Deaths</th>
+					<th class="table-header">Deaths</th>
 					<th>407</th>			
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Travel Advisory Level</th>
+					<th class="table-header">Travel Advisory Level</th>
 					<th>High</th>			
 				</tr>
 			</tbody>
 		</table>
 		<br>
-		<table id="thing3">
+		<table>
 			<tbody>
 				<tr>
-					<th colspan="2" style="background-color: #1D1D36; text-align: center; font-size: 1.3em;">Algeria</th>
+					<th colspan="2" class="mobile-table-header-name">Algeria</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Positive Cases</th>
+					<th class="table-header">Positive Cases</th>
 					<th>52,520</th>
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Recovered Cases</th>
+					<th class="table-header">Recovered Cases</th>
 					<th>36,857</th>			
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Deaths</th>
+					<th class="table-header">Deaths</th>
 					<th>1,771</th>			
 				</tr>
 				<tr>
-					<th style="background-color: #1D1D36">Travel Advisory Level</th>
+					<th class="table-header">Travel Advisory Level</th>
 					<th>High</th>			
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<div id="desktop-table">
+	
+	<div id="desktop-countries-table">
 	<table>
 		<tbody>
 			<tr>
-				<th style="background-color: #1D1D36;">Name</th>
-				<th style="background-color: #1D1D36;">Positive Cases</th>
-				<th style="background-color: #1D1D36;">Recovered Cases</th>
-				<th style="background-color: #1D1D36;">Deaths</th>
-				<th style="background-color: #1D1D36;">Travel Advisory Level</th>
+				<th class="table-header">Name</th>
+				<th class="table-header">Positive Cases</th>
+				<th class="table-header">Recovered Cases</th>
+				<th class="table-header">Deaths</th>
+				<th class="table-header">Travel Advisory Level</th>
 			</tr>
 			<tr>
 				<th>Afghanistan</th>
@@ -371,5 +390,6 @@
 	</table>
 	</div>
 	<br><br><br>
+	
 </body>
 </html>

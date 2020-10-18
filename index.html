@@ -6,14 +6,12 @@
 	<style>
 		body {
 			margin: 0;
-			overflow: hidden;
 			background-color: #284D6D;
-			color: white; overflow: auto; font-family: Arial;
+			color: white; 
+			overflow: auto; 
+			font-family: Arial; /* Should be changed later */
 		}
 		@media only screen and (max-width: 992px) {
-			table, thead, tbody, tr, th, td {
-				display: block; text-align: left;
-			}
 			h1 {
 				font-size: 3em;
 			}
@@ -42,9 +40,9 @@
 			background-color: #1D1D36;
 		}
 		
-		/* --------------------- */
+		/* ------------------------------------------ */
 		
-		#section {
+		#top-article-image {
 			width: 50%;
 			height: 20em;
 			margin: auto;
@@ -53,32 +51,32 @@
 			padding: .5em;
 			border-radius: 1em;
 		}
-		#section img {
+		#top-article-image img {
 			height: 100%; width: 100%;
 			object-fit: cover;
 			border-radius: .2em;
+			opacity: .6;
 		}
-		#mainsection:hover img {
+		#top-article-section:hover img {
 			opacity: .3;
 		}
-		#section2 {
+		@media only screen and (max-width: 992px) {
+			#top-article-image {
+				width: 90%;
+			}
+		}
+		#top-article-description {
+			text-align: center;
+			border-radius: .2em;
 			margin: auto;
 			margin-top: 1.5em;
 			width: 50%;
 			height: 20em;
 			cursor: pointer;
+			z-index: 2;
 		}
 		@media only screen and (max-width: 992px) {
-			#section {
-				width: 90%;
-			}
-		}
-		#section2 {
-			text-align: center;
-			border-radius: .2em;
-		}
-		@media only screen and (max-width: 992px) {
-			#section2 {
+			#top-article-description {
 				width: 90%;
 			}
 		}
@@ -87,29 +85,23 @@
 			margin-left: .5em;
 			margin-right: .5em;
 		}
-		#section2 a, .mainsection2-thing2 a {
+		#top-article-description a, .news-article-description a {
 			margin: 1em 0 0 1em;
 			font-size: .8em;
 		}
-		#mainsection {
-			display: grid;
+		#top-article-section {
+			display: grid; /* Makes div a grid so that child image div and child description div can overlap */
 		}
-		#section, #section2 {
-			grid-area: 1 / 1;
+		#top-article-image, #top-article-description {
+			grid-area: 1 / 1; /* Overlaps description on top of image since description has a higher z-index */
 		}
-		#section2 {
-			z-index: 2;
-		}
-		#section img {
-			opacity: .6;
-		}
-		#mainsection2 {
+		#news-articles-section {
 			display: flex;
 			flex-wrap: wrap;
 			width: 90%;
 			margin: auto;
 		}
-		#mainsection2 div {
+		#news-articles-section div {
 			margin: 1em auto 0 auto;
 			height: 20em;
 			width: 33em;
@@ -124,167 +116,176 @@
 				width: 100%;
 				text-align: center;
 			}
-			#mainsection2 {
+			#news-articles-section {
 				flex-wrap: nowrap;
 			}
-			#section2 a {
+			#top-article-description a {
 				display: none;
 			}
 		}
-		.mainsection2-thing {
+		.news-article {
 			display: grid;
 			cursor: pointer;
 		}
-		.mainsection2-thing img {
+		.news-article img {
 			height: 100%; width: 100%;
 			object-fit: cover; opacity: .6;
 		}
-		.mainsection2-thing div {
+		.news-article div {
 			margin: auto;
 			margin-bottom: 20em;
 			width: 50%;
 			height: 20em;
 		}
-		.mainsection2-thing2, .potato {
-			grid-area: 1 / 1;
+		.news-article-description, .news-article-image {
+			grid-area: 1 / 1; /* Same overlap as before */
 		}
-		.mainsection2-thing2 {
+		.news-article-description {
 			text-align: center;
-			opacity: 1; z-index: 2;
+			opacity: 1; 
+			z-index: 2;
 		}
-		.mainsection2-thing:hover img {
+		.news-article:hover img {
 			opacity: .2;
 		}
 		@media only screen and (max-width: 992px) {
-			#mainsection2 {
+			#news-articles-section { /* Horizontal scroll on mobile */
 				overflow-x: scroll;
 				overflow-y: hidden;
 				white-space: nowrap;
 			
-				.mainsection2-thing {
+				.news-article {
 					display: inline-block;
 				}
 			}
-			.mainsection2-thing2 p, .mainsection2-thing2 a {
+			.news-article-description p, .news-article-description a {
 				display: none;
 			}
-			.mainsection2-thing2 h2 {
+			.news-article-description h2 {
 				white-space: normal;
 			}
 		}
-		#mainsection3 {
+		#covid-tips-section {
 			width: 60%;
 			margin: auto;
 			display: flex;
 		}
-		#mainsection3 ul {
+		#covid-tips-section ul {
 			width: 50%;
 			text-align: left;
 			line-height: 2;
 		}
 		@media only screen and (max-width: 992px) {
-			#mainsection3 {
+			#covid-tips-section {
 				width: 90%;
 				display: block;
 			}
-			#mainsection3 ul {
+			#covid-tips-section ul {
 				width: 90%;
 				margin: auto;
 			}
 		}
 		a {
 			color: white;
+			text-decoration: none;
 		}
 	</style>
 	<script>
 	</script>
 </head>
 <body>
+
 	<div id="header">
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
-		<a style="color: white; text-decoration: none;" href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
 	</div>
 	
-	<div id="mainsection">
-		<div id="section">
+	<div id="top-article-section"> 
+		<div id="top-article-image">
 			<img src="https://www.gannett-cdn.com/-mm-/da3de74f262868b10dc7f6bf12bbf7621b7ee193/c=0-382-3416-2312/local/-/media/2015/01/07/USATODAY/USATODAY/635562302221635856-XXX-COSTA-DIADEMA-66771300.JPG?width=660&height=373&fit=crop&format=pjpg&auto=webp"> <!-- interchangable image -->
 		</div>
-		<div id="section2">
+		<div id="top-article-description">
 			<h2>Eight passengers test positive for COVID-19 on Costa Cruises ship</h2>
 			<p>By Morgan Hines, USA Today</p>
 			<a href="https://www.usatoday.com/story/travel/cruises/2020/10/16/costa-cruises-eight-passengers-have-covid-19-cruise-ship-italy/3677815001/">https://www.usatoday.com/story/travel/cruises/2020/10/16/costa-cruises-eight-passengers-have-covid-19-cruise-ship-italy/3677815001/</a>
 		</div>
 	</div>
 	
+	<!-- ----------------------------------------------- -->
+	
 	<br>
 	<h1>Recent Travel News</h1>
-	<div id="mainsection2">
-		<div class="mainsection2-thing">
-			<div class="potato">
+	<div id="news-articles-section">
+	
+		<div class="news-article">
+			<div class="news-article-image">
 				<img src="https://media2.s-nbcnews.com/j/newscms/2020_41/3419044/201010-north-dakota-coronavirus-mn-1340_0a4751f54f3fe4194f379b1fd0eea98d.fit-2000w.JPG">
 			</div>
-			<div class="mainsection2-thing2">
+			<div class="news-article-description">
 				<h2>As US cases rise, Trump's policy panned as a 'dangerous fallacy'</h2>
 				<p>By Steve Benen, MSNBC</p>
 				<a href="https://www.msnbc.com/rachel-maddow-show/us-cases-rise-trump-s-policy-panned-dangerous-fallacy-n1243513">https://www.msnbc.com/rachel-maddow-show/us-cases-rise-trump-s-policy-panned-dangerous-fallacy-n1243513</a>
 			</div>
 		</div>
-		<div class="mainsection2-thing">
-			<div class="potato">
+		<div class="news-article">
+			<div class="news-article-image">
 				<img src="https://a57.foxnews.com/cf-images.us-east-1.prod.boltdns.net/v1/static/694940094001/bf8cd1e9-236d-4412-9d03-b393df46e309/10d582bf-98cd-4f96-b248-841add2f169a/1280x720/match/931/524/image.jpg?ve=1&tl=1">
 			</div>
-			<div class="mainsection2-thing2">
+			<div class="news-article-description">
 				<h2>Trudeau: US-Canada border to remain closed until coronavirus is under control</h2>
 				<p>By Paul Best, Fox News</p>
 				<a href="https://www.foxnews.com/world/trudeau-border-closed-coronavirus-under-control">https://www.foxnews.com/world/trudeau-border-closed-coronavirus-under-control</a>
 			</div>
 		</div>
-		<div class="mainsection2-thing">
-			<div class="potato">
+		<div class="news-article">
+			<div class="news-article-image">
 				<img src="https://images.wsj.net/im-243923?width=620&size=1.5">
 			</div>
-			<div class="mainsection2-thing2">
+			<div class="news-article-description">
 				<h2>Anthony Fauci Urges Americans To Reconsider Thanksgiving Gatherings Amid Pandemic</h2>
 				<p>By Lee Moran, Huffington Post</p>
 				<a href="https://www.huffpost.com/entry/anthony-fauci-thanksgiving-warning-coronavirus_n_5f882a08c5b6c5eccffdd3f9?ncid=engmodushpmg00000004">https://www.huffpost.com/entry/anthony-fauci-thanksgiving-warning-coronavirus_n_5f882a08c5b6c5eccffdd3f9?ncid=engmodushpmg00000004</a>
 			</div>
 		</div>
-		<div class="mainsection2-thing">
-			<div class="potato">
+		<div class="news-article">
+			<div class="news-article-image">
 				<img src="https://cbsnews1.cbsistatic.com/hub/i/r/2020/10/16/8313fa52-02d1-4662-8169-d65c9c8e8eb1/thumbnail/640x360/c1c645a807ad3ddd895655838b9af37b/gettyimages-1280421821.jpg">
 			</div>
-			<div class="mainsection2-thing2">
+			<div class="news-article-description">
 				<h2>U.S. surpasses 8 million coronavirus cases</h2>
 				<p>By Mola Lenghi and Meg Oliver, CBS News</p>
 				<a href="https://www.cbsnews.com/news/covid-19-cases-8-million-united-states/">https://www.cbsnews.com/news/covid-19-cases-8-million-united-states/</a>
 			</div>
 		</div>
-		<div class="mainsection2-thing">
-			<div class="potato">
+		<div class="news-article">
+			<div class="news-article-image">
 				<img src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ikJlr.82sNjA/v1/1000x-1.jpg">
 			</div>
-			<div class="mainsection2-thing2">
+			<div class="news-article-description">
 				<h2>U.S. Infections Jump; Global Cases Top 39 Million: Virus Update</h2>
 				<p>By Anand Krishnamoorthy, Bloomberg</p>
 				<a href="https://www.bloomberg.com/news/articles/2020-10-16/u-s-tops-8-million-cases-europe-breaks-records-virus-update">https://www.bloomberg.com/news/articles/2020-10-16/u-s-tops-8-million-cases-europe-breaks-records-virus-update</a>
 			</div>
 		</div>
-		<div class="mainsection2-thing">
-			<div class="potato">
+		<div class="news-article">
+			<div class="news-article-image">
 				<img src="https://www.gannett-cdn.com/presto/2020/05/27/USAT/284f402a-03a8-4066-bfc3-14c3d9205fb3-AP_Virus_Outbreak_Poll_Vaccines.JPG?width=660&height=441&fit=crop&format=pjpg&auto=webp">
 			</div>
-			<div class="mainsection2-thing2">
+			<div class="news-article-description">
 				<h2>Thanksgiving would be the earliest that a COVID-19 vaccine may arrive, Pfizer says</h2>
 				<p>By Elizabeth Weise, USA Today</p>
 				<a href="https://www.usatoday.com/story/news/2020/10/16/pfizer-ceo-letter-makes-thanksgiving-earliest-date-covid-19-vaccine/3685200001/">https://www.usatoday.com/story/news/2020/10/16/pfizer-ceo-letter-makes-thanksgiving-earliest-date-covid-19-vaccine/3685200001/</a>
 			</div>
 		</div>
+		
 	</div>
+	
+	<!-- ----------------------------------------------- -->
 	
 	<br><br>
 	<h1>COVID-19 Travel Tips</h1>
-	<div id="mainsection3">
+	<div id="covid-tips-section">
 		<ul>
 			<li>Clean your hands often, either with soap and water for 20 seconds or a hand sanitizer that contains at least 60% alcohol.</li>
 			<li>Avoid close contact with people who are sick.</li>
@@ -297,5 +298,6 @@
 		</ul>
 	</div>
 	<br><br>
+	
 </body>
 </html>
