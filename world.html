@@ -1,0 +1,894 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>World Stats - COVID-19 Travel Guide</title>
+	<style>
+		body {
+			margin: 0;
+			background-color: #284D6D;
+			color: white; 
+			overflow: auto; 
+			font-family: Arial; /* Use different font later */
+		}
+		@media only screen and (max-width: 992px) {
+			table, thead, tbody, tr, th, td { /* Transforms tables into hamburgers; even though different tables are loaded between desktop and mobile this is still needed until fixed */
+				display: block; text-align: left;
+			}
+			h1 {
+				font-size: 3em;
+			}
+		}
+		#header {
+			background-color: #3C8BB5;
+			text-align: right;
+			padding: .5em;
+		}
+		.links {
+			margin-top: 0;
+			margin-right: 1em;
+			display: inline;
+			padding: .5em;
+		}
+		@media only screen and (max-width: 992px) {
+			#header {
+				text-align: center; display: flex; padding: 0;
+			}
+			.links {
+				margin: 0 1em 0 1em; text-align: center; width: 50%; font-size: 1.3em;
+			}
+		}
+		.links:hover {
+			background-color: #1D1D36;
+		}
+		p {
+			display: inline;
+		}
+		table {
+			border: 1px solid white;
+			margin: auto;
+			width: 90%; table-layout: fixed;
+		}
+		th {
+			border: 1px solid white;
+			padding: 1em;
+		}
+		#section {
+			margin: auto;
+			width: 90%;
+			display: flex;
+		}
+		@media only screen and (max-width: 992px) {
+			#section {
+				display: block;
+			}
+		}
+		#countries-name {
+			text-align: center;
+		}
+		#countries-bio {
+			margin-top: 1.5em;
+			margin-left: 1em;
+			width: 40%;
+		}
+		#countries-bio p {
+			font-size: .8em;
+		}
+		@media only screen and (max-width: 992px) {
+			#countries-bio {
+				display: block; margin-top: -1.3em;  margin-left: 0; width: 100%; font-size: 1em; text-align: center;
+			}
+		}
+		#search-sort-section {
+			margin: auto;
+			width: 90%;
+			display: flex;
+		}
+		@media only screen and (max-width: 992px) {
+			#search-sort-section {
+				display: block; margin: auto; width: 100%;
+			}
+		}
+		#parameters {
+			margin-left: 1em;
+		}
+		#search {
+			width: 50%;
+			display: flex;
+		}
+		@media only screen and (max-width: 992px) {
+			#search {
+				display: block; margin: auto; width: 90%; text-align: center;
+			}
+			#parameters {
+				width: 100%; text-align: center; margin: auto; padding-top: 1em;
+			}
+			#parameters label {
+				width: 100%; margin-right: .9em;
+			}
+			#parameters p {
+				margin-right: 1em; margin-left: 1em;
+			}
+		}
+		#search input {
+			width: 100%;
+		}
+		button {
+			background-color: #3C8BB5;
+			color: white;
+			border: none;
+			cursor: pointer;
+		}
+		@media only screen and (max-width: 992px) {
+			#search {
+				display: flex;
+			}
+			#search input {
+				text-align: center; width: 100%;
+			}
+			button {
+				font-size: 3em; width: 15%;
+			}
+			input[type="text"] {
+				font-size: 3em;
+			}
+			input[type="radio"] {
+				transform: scale(1.5); margin-right: .5em;
+			}
+			#desktop-countries-table {
+				display: none;
+			}
+			#desktop-world-table {
+				display: none;
+			}
+		}
+		@media only screen and (min-width: 993px) {
+			#mobile-countries-table {
+				display: none;
+			}
+			#mobile-world-table {
+				display: none;
+			}
+		}
+		#header a {
+			color: white;
+			text-decoration: none;
+		}
+		.table-header {
+			background-color: #1D1D36;
+			cursor: pointer;
+		}
+		.mobile-table-header-name {
+			background-color: #1D1D36;
+			text-align: center; 
+			font-size: 1.3em;
+			column-span: 2;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	
+	// 175 countries
+	
+	var ascending = true;
+	var c = 0;
+	var bool = 0;
+	
+	function tableCreationFunction() {
+			
+		setTimeout(sortTable, 8000, 0);	
+			
+		var countriesArray = [
+			['AFG', 'Afghanistan'], 
+			['ALB', 'Albania'], 
+			['DZA', 'Algeria'], 
+			['AND', 'Andorra'],
+			['AGO', 'Angola'],
+			// ['AIA', 'Anguilla'],
+			// ['ATA', 'Antarctica'],
+			// ['ATG', 'Antigua and Barbuda'],
+			['ARG', 'Argentina'],
+			// ['ARM', 'Armenia'],
+			['ABW', 'Aruba'],
+			['AUS', 'Australia'],
+			['AUT', 'Austria'],
+			['AZE', 'Azerbaijan'],
+			// ['BHS', 'Bahamas'],
+			['BHR', 'Bahrain'],
+			['BGD', 'Bangladesh'],
+			['BRB', 'Barbados'],
+			['BLR', 'Belarus'],
+			['BEL', 'Belgium'],
+			['BLZ', 'Belize'],
+			['BEN', 'Benin'],
+			['BMU', 'Bermuda'],
+			['BTN', 'Bhutan'],
+			['BOL', 'Bolivia'],
+			// ['BES', 'Bonaire, Sint Eustatius and Saba'],
+			['BIH', 'Bosnia and Herzegovina'],
+			['BWA', 'Botswana'],
+			// ['BVT', 'Bouvet Island'],
+			['BRA', 'Brazil'],
+			// ['IOT', 'British Indian Ocean Territory'],
+			['BRN', 'Brunei Darussalam'],
+			['BGR', 'Bulgaria'],
+			['BFA', 'Burkina Faso'],
+			['BDI', 'Burundi'],
+			['CPV', 'Cabo Verde'],
+			['KHM', 'Cambodia'],
+			['CMR', 'Cameroon'],
+			['CAN', 'Canada'],
+			// ['CYM', 'Cayman Islands'],
+			['CAF', 'Central African Republic'],
+			['TCD', 'Chad'],
+			['CHL', 'Chile'],
+			['CHN', 'China'],
+			// ['CXR', 'Christmas Island'],
+			// ['CCK', 'Cocos (Keeling) Islands'],
+			['COL', 'Colombia'],
+			// ['COM', 'Comoros'],
+			['COD', 'The Democratic Republic of Congo'],
+			['COG', 'Republic of the Congo'],
+			// ['COK', 'Cook Islands'],
+			['CRI', 'Costa Rica'],
+			['HRV', 'Croatia'],
+			['CUB', 'Cuba'],
+			// ['CUW', 'Curacao'], // Special character for second c, look at later
+			['CYP', 'Cyprus'],
+			['CZE', 'Czechia'],
+			['CIV', 'Cote d\'lvoire'], // Special character, look at later
+			['DNK', 'Denmark'],
+			['DJI', 'Djibouti'],
+			['DMA', 'Dominica'],
+			['DOM', 'Dominican Republic'],
+			['ECU', 'Ecuador'],
+			['EGY', 'Egypt'],
+			['SLV', 'El Salvador'],
+			// ['GNQ', 'Equatorial Guinea'],
+			['ERI', 'Eritrea'],
+			['EST', 'Estonia'],
+			['SWZ', 'Eswatini'],
+			['ETH', 'Ethiopia'],
+			// ['FLK', 'Falkland Islands'],
+			// ['FRO', 'Faroe Islands'],
+			['FJI', 'Fiji'],
+			['FIN', 'Finland'],
+			['FRA', 'France'],
+			// ['GUF', 'French Guiana'],
+			// ['PYF', 'French Polynesia'],
+			// ['ATF', 'French Southern Territories'],
+			['GAB', 'Gabon'],
+			['GMB', 'Gambia'],
+			['GEO', 'Georgia'],
+			['DEU', 'Germany'],
+			['GHA', 'Ghana'],
+			// ['GIB', 'Gibraltar'],
+			['GRC', 'Greece'],
+			['GRL', 'Greenland'],
+			// ['GRD', 'Grenada'],
+			// ['GLP', 'Guadeloupe'],
+			['GUM', 'Guam'],
+			['GTM', 'Guatemala'],
+			// ['GCY', 'Guernsey'],
+			['GIN', 'Guinea'],
+			// ['GNB', 'Guinea-Bissau'],
+			// ['GUY', 'Guyana'],
+			['HTI', 'Haiti'],
+			// ['HMD', 'Heard Island and McDonald Islands'],
+			// ['VAT', 'Holy See'],
+			['HND', 'Honduras'],
+			['HKG', 'Hong Kong'],
+			['HUN', 'Hungary'],
+			['ISL', 'Iceland'],
+			['IND', 'India'],
+			['IDN', 'Indonesia'],
+			['IRN', 'Iran'],
+			['IRQ', 'Iraq'],
+			['IRL', 'Ireland'],
+			// ['IMN', 'Isle of Man'],
+			['ISR', 'Israel'],
+			['ITA', 'Italy'],
+			['JAM', 'Jamaica'],
+			['JPN', 'Japan'],
+			// ['JEY', 'Jersey'],
+			['JOR', 'Jordan'],
+			['KAZ', 'Kazakhstan'],
+			['KEN', 'Kenya'],
+			// ['KIR', 'Kiribati'],
+			// ['PRK', 'North Korea'],
+			['KOR', 'South Korea'],
+			['KWT', 'Kuwait'],
+			['KGZ', 'Kyrgyzstan'],
+			['LAO', 'Lao People\'s Democratic Republic'],
+			['LVA', 'Latvia'],
+			['LBN', 'Lebanon'],
+			['LSO', 'Lesotho'],
+			['LBR', 'Liberia'],
+			['LBY', 'Libya'],
+			// ['LIE', 'Liechtenstein'],
+			['LTU', 'Lithuania'],
+			['LUX', 'Luxembourg'],
+			['MAC', 'Macao'],
+			['MDG', 'Madagascar'],
+			['MWI', 'Malawi'],
+			['MYS', 'Malaysia'],
+			// ['MDV', 'Maldives'],
+			['MLI', 'Mali'],
+			// ['MLT', 'Malta'],
+			// ['MHL', 'Marshall Islands'],
+			// ['MTQ', 'Martinique'],
+			['MRT', 'Mauritania'],
+			['MUS', 'Mauritius'],
+			// ['MYT', 'Mayotte'],
+			['MEX', 'Mexico'],
+			// ['FSM', 'Micronesia'],
+			['MDA', 'Moldova'],
+			// ['MCO', 'Monaco']
+			['MNG', 'Mongolia'],
+			// ['MNE', 'Montenegro'],
+			// ['MSR', 'Montserrat'],
+			['MAR', 'Morocco'],
+			['MOZ', 'Mozambique'],
+			['MMR', 'Myanmar'],
+			['NAM', 'Namibia'],
+			// ['NRU', 'Nauru'],
+			['NPL', 'Nepal'],
+			['NLD', 'Netherlands'],
+			// ['NCL', 'New Caledonia'],
+			['NZL', 'New Zealand'],
+			['NIC', 'Nicaragua'],
+			['NER', 'Niger'],
+			['NGA', 'Nigeria'],
+			// ['NIU', 'Niue'],
+			// ['NFK', 'Norfolk Island'],
+			// ['MNP', 'Northern Mariana Islands'],
+			['NOR', 'Norway'],
+			['OMN', 'Oman'],
+			['PAK', 'Pakistan'],
+			// ['PLW', 'Palau'],
+			['PSE', 'Palestine'],
+			['PAN', 'Panama'],
+			['PNG', 'Papua New Guinea'],
+			['PRY', 'Paraguay'],
+			['PER', 'Peru'],
+			['PHL', 'Philippines'],
+			// ['PCN', 'Pitcairn'],
+			['POL', 'Poland'],
+			['PRT', 'Portugal'],
+			['PRI', 'Puerto Rico'],
+			['QAT', 'Qatar'],
+			// ['MKD', 'Republic of North Macedonia'],
+			['ROU', 'Romania'],
+			['RUS', 'Russia'],
+			['RWA', 'Rwanda'],
+			// ['REU', 'Reunion'], // Special character, check later
+			// ['BLM', 'Saint Barthelemy'], // Special character, check later
+			// ['SHN', 'Saint Helena, Ascension and Tristan da Cunha'],
+			// ['KNA', 'Saint Kitts and Nevis'],
+			// ['LCA', 'Saint Lucia'],
+			// ['MAF', 'Saint Martin'],
+			// ['SPM', 'Saint Pierre and Miquelon'],
+			// ['VCT', 'Saint Vincent and the Grenadines'],
+			// ['WSM', 'Samoa'],
+			['SMR', 'San Marino'],
+			// ['STP', 'Sao Tome and Principe'],
+			['SAU', 'Saudi Arabia'],
+			['SEN', 'Senegal'],
+			['SRB', 'Serbia'],
+			['SYC', 'Seychelles'],
+			['SLE', 'Sierra Leone'],
+			['SGP', 'Singapore'],
+			// ['SXM', 'Sint Maarten'],
+			['SVK', 'Slovakia'],
+			['SVN', 'Slovenia'],
+			['SLB', 'Solomon Islands'],
+			['SOM', 'Somalia'],
+			['ZAF', 'South Africa'],
+			// ['SGS', 'South Georgia and the South Sandwich Islands'],
+			['SSD', 'South Sudan'],
+			['ESP', 'Spain'],
+			['LKA', 'Sri Lanka'],
+			['SDN', 'Sudan'],
+			['SUR', 'Suriname'],
+			// ['SJM', 'Svalbard and Jan Mayen'],
+			['SWE', 'Sweden'],
+			['CHE', 'Switzerland'],
+			['SYR', 'Syria'],
+			['TWN', 'Taiwan'],
+			['TJK', 'Tajikistan'],
+			['TZA', 'Tanzania'],
+			['THA', 'Thailand'],
+			['TLS', 'Timor-Leste'],
+			['TGO', 'Togo'],
+			// ['TKL', 'Tokelau'],
+			// ['TON', 'Tonga'],
+			['TTO', 'Trinidad and Tobago'],
+			['TUN', 'Tunisia'],
+			['TUR', 'Turkey'],
+			['TKM', 'Turkmenistan'],
+			// ['TCA', 'Turks and Caicos Islands'],
+			// ['TUV', 'Tuvalu'],
+			['UGA', 'Uganda'],
+			['UKR', 'Ukraine'],
+			['ARE', 'United Arab Emirates'],
+			['GBR', 'United Kingdom of Great Britain and Northern Ireland'],
+			// ['UMI', 'United States Minor Outlying Islands'],
+			['USA', 'United States of America'],
+			['URY', 'Uruguay'],
+			['UZB', 'Uzbekistan'],
+			['VUT', 'Vanuatu'],
+			['VEN', 'Venezuela'],
+			['VNM', 'Vietnam'],
+			// ['VGB', 'Virgin Islands (British)'],
+			// ['VIR', 'Virgin Islands (U.S.)'],
+			// ['WLF', 'Wallis and Futuna'],
+			// ['ESH', 'Western Sahara'],
+			['YEM', 'Yemen'],
+			['ZMB', 'Zambia'],
+			['ZWE', 'Zimbabwe']
+			// ['ALA', 'Aland Islands'] // Special character, check later
+		];
+		
+		// ------ Date ------
+		
+		var date = new Date(); // 2020-10-05 | YYYY-MM-DD
+		var pastDate = date.getDate() - 14;
+		date.setDate(pastDate);
+		var dateString = date.toString();
+		console.log(dateString);
+		var datePulledYear = dateString.substring(11, 15);
+		console.log(datePulledYear);
+		
+		var datePulledMonth = dateString.substring(4, 7);
+		console.log(datePulledMonth);
+		
+		if (datePulledMonth === "Jan") { // This could probably be a switch statement
+			datePulledMonth = "01";
+		} else if (datePulledMonth === "Feb") {
+			datePulledMonth = "02";
+		} else if (datePulledMonth === "Mar") {
+			datePulledMonth = "03";
+		} else if (datePulledMonth === "Apr") {
+			datePulledMonth = "04";
+		} else if (datePulledMonth === "May") {
+			datePulledMonth = "05";
+		} else if (datePulledMonth === "Jun") {
+			datePulledMonth = "06";
+		} else if (datePulledMonth === "Jul") {
+			datePulledMonth = "07";
+		} else if (datePulledMonth === "Aug") {
+			datePulledMonth = "08";
+		} else if (datePulledMonth === "Sep") {
+			datePulledMonth = "09";
+		} else if (datePulledMonth === "Oct") {
+			datePulledMonth = "10";
+		} else if (datePulledMonth === "Nov") {
+			datePulledMonth = "11";
+		} else if (datePulledMonth === "Dec") {
+			datePulledMonth = "12";
+		}
+		
+		console.log("datePulledMonth as number: " + datePulledMonth);
+		
+		var datePulledDay = dateString.substring(8, 10);
+		console.log("datePulledDay: " + datePulledDay);
+		
+		var dateUse = datePulledYear + "-" + datePulledMonth + "-" + datePulledDay;
+		console.log(dateUse);
+		
+		document.getElementById("current-date").innerHTML = "Information from " + dateUse;
+		
+		// ------
+				
+		for (x = 0; x < countriesArray.length; x++) {
+									
+			// let requestURL = 'https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/CAN/2020-10-05';
+			let requestURL = 'https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/' + countriesArray[x][0] + '/' + dateUse;
+			// API URL
+			
+			let request = new XMLHttpRequest(); 
+			// XMLHttpRequest (XHR) object assigned to variable
+			
+			request.open('GET', requestURL); 
+			// XMLHttpRequest.open() function, first argument is a method and second is a URL (string variable here)
+			
+			request.responseType = 'json'; 
+			// "The response is a JavaScript object created by parsing the contents of received data as JSON."
+			
+			request.send(); 
+			// Sends request to server
+						
+			request.onload = function() { // Occurs after send function above
+				const result = request.response;
+				// console.log(result); 
+				// console.log(result.stringencyData.deaths);
+								
+				// ------------- Desktop table DOM -------------
+				
+				// Remove table if already exists (how)
+								
+				var newRow = document.createElement("tr");
+				var newRowName = document.createElement("th");
+				var newRowConfirmed = document.createElement("th");
+				var newRowDeaths = document.createElement("th");
+				var newRowTravel = document.createElement("th"); 
+				var newRowMasks = document.createElement("th");
+				
+				document.getElementById("desktop-countries-table-body").appendChild(newRow);
+				
+				if (ascending == true) {
+					for (y = 0; y < countriesArray.length; y++) {
+						if (result.stringencyData.country_code === countriesArray[y][0]) {
+							newRowName.innerHTML = countriesArray[y][1]; // console.log(countriesArray[y][0]);
+							newRow.id = countriesArray[y][1];
+							newRow.className = "entry";
+						}
+					}
+				} 
+								
+				// newRowName.innerHTML = result.stringencyData.country_code;
+				newRow.appendChild(newRowName);
+				
+				newRowConfirmed.innerHTML = result.stringencyData.confirmed;
+				newRow.appendChild(newRowConfirmed);
+				
+				newRowDeaths.innerHTML = result.stringencyData.deaths;
+				newRow.appendChild(newRowDeaths);
+				
+				newRowTravel.innerHTML = result.policyActions[7].policy_value_display_field;
+				newRow.appendChild(newRowTravel);
+								
+				newRowMasks.innerHTML = result.policyActions[17].policy_value_display_field;
+				newRow.appendChild(newRowMasks);
+				
+				// -------------------------------
+				
+				// ------------- Mobile table DOM -------------
+				
+				// For mobile, create table element, create tbody element, append table into div and tbody into table
+				// Create tr element, append to tbody, then create th element to append to tr
+				// First th.innerHTML should be country name
+				// Create another tr element and append to tbody
+				// Create two th elements, first th has innerHTML of "Positive Cases" (make sure CSS rules still apply), second th is value from API
+				// Do this for all stats
+				
+				var newMobileTable = document.createElement("table");
+				var newMobileTableBody = document.createElement("tbody");
+				var newMobileTableRow = document.createElement("tr");
+				
+				var newMobileTableName = document.createElement("th");
+				var newMobileTableConfirmed = document.createElement("th");
+				var newMobileTableDeaths = document.createElement("th");
+				var newMobileTableTravel = document.createElement("th");
+				var newMobileTableMasks = document.createElement("th");
+				
+				var newMobileTableConfirmedHeader = document.createElement("th"); newMobileTableConfirmedHeader.innerHTML = "Positive Cases"; newMobileTableConfirmedHeader.classList.add("table-header");
+				var newMobileTableDeathsHeader = document.createElement("th"); newMobileTableDeathsHeader.innerHTML = "Deaths"; newMobileTableDeathsHeader.classList.add("table-header");
+				var newMobileTableTravelHeader = document.createElement("th"); newMobileTableTravelHeader.innerHTML = "Travel Restrictions"; newMobileTableTravelHeader.classList.add("table-header");
+				var newMobileTableMasksHeader = document.createElement("th"); newMobileTableMasksHeader.innerHTML = "Masks Required"; newMobileTableMasksHeader.classList.add("table-header");
+				
+				var tableBreak = document.createElement("br");
+				
+				document.getElementById("mobile-countries-table").appendChild(newMobileTable);
+				newMobileTable.appendChild(newMobileTableBody);
+				newMobileTableBody.appendChild(newMobileTableRow);
+				
+				for (z = 0; z < countriesArray.length; z++) {
+					if (result.stringencyData.country_code === countriesArray[z][0]) {
+						newMobileTableName.innerHTML = countriesArray[z][1];
+						newMobileTableName.classList.add("mobile-table-header-name");
+					}
+				}
+				
+				newMobileTableRow.appendChild(newMobileTableName);
+				
+				newMobileTableConfirmed.innerHTML = result.stringencyData.confirmed;
+				newMobileTableRow.appendChild(newMobileTableConfirmedHeader);
+				newMobileTableRow.appendChild(newMobileTableConfirmed);
+				
+				newMobileTableDeaths.innerHTML = result.stringencyData.deaths;
+				newMobileTableRow.appendChild(newMobileTableDeathsHeader);
+				newMobileTableRow.appendChild(newMobileTableDeaths);
+				
+				newMobileTableTravel.innerHTML = result.policyActions[7].policy_value_display_field;
+				newMobileTableRow.appendChild(newMobileTableTravelHeader);
+				newMobileTableRow.appendChild(newMobileTableTravel);
+				
+				newMobileTableMasks.innerHTML = result.policyActions[17].policy_value_display_field;
+				newMobileTableRow.appendChild(newMobileTableMasksHeader);
+				newMobileTableRow.appendChild(newMobileTableMasks);
+				
+				c++;
+				// console.log(c);
+				
+			}
+		}
+	}
+	
+	// -------------------------------------------------------
+	
+	function sortTable(n) { // Function takes in an argument of "n"
+		var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0; // Initialize variables
+		table = document.getElementById("desktop-countries-table-body"); // HTML table assigned to variable "table"
+		switching = true; // Assign boolean value true to variable "switching"
+		
+		// - Set the sorting direction to ascending:
+		dir = "asc"; // Variable "dir" (direction) is assigned string value of 'asc' (ascending)
+		
+		// - Make a loop that will continue until no switching has been done:
+		
+		console.log("n: " + n);
+		// fixTable();
+		
+		if (n == 0 || n == 3 || n == 4) {
+			while (switching) { // While the variable "switching" is true
+				// - start by saying: no switching is done:
+				switching = false;
+				rows = table.rows; // Second "rows" is a collection object, HTML table rows are assigned to variable "rows"
+				
+				// - Loop through all table rows (except the first, which contains table headers):
+				// By using the value 1 instead of 0, it skips the first row
+				for (i = 0; i < (rows.length - 1); i++) {
+					// - start by saying there should be no switching [assign false to variable shouldSwitch]
+					shouldSwitch = false;
+					
+					// - Get the two elements you want to compare, one from current row and one from the next:
+					x = rows[i].getElementsByTagName("TH")[n]; // all <td /> elements in a current row, assigned to variable x
+					y = rows[i + 1].getElementsByTagName("TH")[n]; // all <td /> elements of next row, assigned to variable y
+					
+					// - check if the two rows should switch place, based on the direction, asc or desc:
+					if (dir == "asc") {
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) { // 
+						// - if so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+						}
+					} else if (dir == "desc") {
+						if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+						// - if so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+						}
+					}
+				}
+				
+			if (shouldSwitch) {
+				/* If a switch has been marked, make the switch and mark that a switch has been done: */
+				rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+				switching = true;
+				// Each time a switch is done, increase this count by 1:
+				switchcount ++;      
+			} else {
+				/*If no switching has been done AND the direction is "asc",
+				set the direction to "desc" and run the while loop again.*/
+				if (switchcount == 0 && dir == "asc") {
+					dir = "desc";
+					switching = true;
+				}
+			}
+		  }
+		}
+	
+		if (n == 1 || n == 2) {
+			while (switching) { // While the variable "switching" is true
+				// - start by saying: no switching is done:
+				switching = false;
+				rows = table.rows; // Second "rows" is a collection object, HTML table rows are assigned to variable "rows"
+				
+				// - Loop through all table rows (except the first, which contains table headers):
+				// By using the value 1 instead of 0, it skips the first row
+				for (i = 0; i < (rows.length - 1); i++) {
+					// - start by saying there should be no switching [assign false to variable shouldSwitch]
+					shouldSwitch = false;
+					
+					// - Get the two elements you want to compare, one from current row and one from the next:
+					x = rows[i].getElementsByTagName("TH")[n]; // all <td /> elements in a current row, assigned to variable x
+					y = rows[i + 1].getElementsByTagName("TH")[n]; // all <td /> elements of next row, assigned to variable y
+					
+					// - check if the two rows should switch place, based on the direction, asc or desc:
+					if (dir == "asc") {
+						if (Number(x.innerHTML) > Number(y.innerHTML)) {
+							shouldSwitch = true;
+							break;
+						}
+					} else if (dir == "desc") {
+						if (Number(x.innerHTML) < Number(y.innerHTML)) {
+							shouldSwitch = true;
+							break;
+						}
+					}
+				}
+				
+			if (shouldSwitch) {
+				/*If a switch has been marked, make the switch and mark that a switch has been done:*/
+				rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+				switching = true;
+				//Each time a switch is done, increase this count by 1:
+				switchcount ++;      
+			} else {
+				/*If no switching has been done AND the direction is "asc",
+				set the direction to "desc" and run the while loop again.*/
+				if (switchcount == 0 && dir == "asc") {
+					dir = "desc";
+					switching = true;
+				}
+			}
+		  }
+		}
+		
+		fixTable();
+		
+	}
+	
+	function fixTable() {
+		var x;
+		var tableRows = document.getElementById("hello").rows;
+		
+		console.log("hello");
+		
+		for (x = 0; x < tableRows.length; x++) {
+			if (tableRows[x].cells[0].innerHTML == "") {
+				tableRows[x].style.display = "none"; 
+			}
+			// console.log(tableRows[x].cells[0]);
+			if (tableRows[x].cells.length != 5) {
+				while (tableRows[x].cells.length != 5) {
+					var newThing = document.createElement("th");
+					newThing.innerHTML = "";
+					tableRows[x].appendChild(newThing);
+				}
+			}
+		}
+	}
+	
+	function tableLength() {
+		var table = document.getElementById("hello");
+		console.log("Length: " + table.rows.length);
+	}
+	
+	// -------------------------------------------------------	
+		
+	</script>
+</head>
+<body onload="tableCreationFunction()">
+	<div id="header">
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/" class="links">Home</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/usa.html" class="links">USA</a>
+		<a href="https://students.cah.ucf.edu/~ca631855/workshop/world.html" class="links">World</a>
+	</div>
+	<h1 style="text-align: center;">World COVID-19 Statistics</h1>
+	
+	<!-- ---------------------------- -->
+	
+	<!-- Global world stats shown at top of page -->
+
+	<div id="mobile-world-table"> <!-- Looks different without CSS media query rule that changes it into a hamburger -->
+		<table>
+			<tbody>
+				<tr>
+					<th class="table-header">Positive Cases</th>
+					<th>36,297,838</th>
+				</tr>
+				<tr>
+					<th class="table-header">Recovered Cases</th>
+					<th>27,314,855</th>
+				</tr>
+				<tr>
+					<th class="table-header">Deaths</th>
+					<th>1,058,130</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="desktop-world-table">
+		<table>
+			<tbody>
+				<tr>
+					<th class="table-header">Positive Cases</th>
+					<th class="table-header">Recovered Cases</th>
+					<th class="table-header">Deaths</th>
+				</tr>
+				<tr>
+					<th>36,297,838</th>
+					<th>27,314,855</th>
+					<th>1,058,130</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br>
+	
+	<!-- ---------------------------- -->
+	
+	<!-- Search bar and sort parameters for tables -->
+
+	<div id="section">
+		<div id="countries-name">
+			<h1>Countries</h1>
+		</div>
+		<div id="countries-bio">
+			<p>Hale, Thomas, Sam Webster, Anna Petherick, Toby Phillips, and Beatriz Kira (2020).<br>Oxford COVID-19 Government Response Tracker, Blavatnik School of Government.<br>Data use policy: Creative Commons Attribution CC BY standard.</p>
+			<p id="current-date"></p>
+		</div>
+	</div>
+	<br>
+	<div id="search-sort-section">
+		<div id="search">
+			<input type="text" id="search-input" onkeyup="searchFunction(); mobileSearchFunction();" placeholder="Search">
+		</div>
+	</div>
+	<script>
+	
+		function searchFunction() {
+		
+			var input, filter, filteredTable, filteredTableItems, itemName, itemNameValue; // Initialize variables
+			input = document.getElementById("search-input"); // Search bar on page assigned to variable "input"
+			filter = input.value.toUpperCase(); // Input value in search bar stored as variable "filter"
+			filteredTable = document.getElementById("desktop-countries-table-body"); // Desktop table assigned to variable "filteredTable"
+			filteredTableItems = filteredTable.getElementsByClassName("entry"); // All country rows are assigned to variable "filteredTableItems" because they were all assigned the same class "entry"
+			
+			for (i = 0; i < filteredTableItems.length; i++) { // Loop through each item in filteredTableItems
+				itemName = filteredTableItems[i].getElementsByTagName("th")[0]; // Assigns the first "th" value in a row (country name) to "itemName"
+				itemNameValue = itemName.textContent || itemName.innerText; // The text within the first "th" value in a row (country name) is assigned to "itemNameValue", textContent and innerText are basically the same
+				
+				// indexOf returns a number based on where string occurs in a specified value
+				// indexOf(filter) > -1 means if current input is within itemNameValue, it appears. Else, display is set to "none" meaning it does not appear
+				if (itemNameValue.toUpperCase().indexOf(filter) > -1) { // 
+					filteredTableItems[i].style.display = "";
+				} else {
+					filteredTableItems[i].style.display = "none";
+				}
+			}
+		}
+		
+		// -----------------------------------------
+		
+		function mobileSearchFunction() {
+			var input, filter, filteredTable, filteredTableItems, itemName, itemNameValue;
+			input = document.getElementById("search-input");
+			filter = input.value.toUpperCase();
+			filteredTable = document.getElementById("mobile-countries-table");
+			filteredTableItems = filteredTable.getElementsByClassName("mobile-table-header-name");
+			
+			for (i = 0; i < filteredTableItems.length; i++) {
+				itemNameValue = filteredTableItems[i].textContent || filteredTableItems[i].innerText;
+				if (itemNameValue.toUpperCase().indexOf(filter) > -1) { // 
+					filteredTableItems[i].parentElement.parentElement.parentElement.style.display = ""; // filteredTableItems[i].style.display = "";
+				} else {
+					filteredTableItems[i].parentElement.parentElement.parentElement.style.display = "none"; // filteredTableItems[i].style.display = "none";
+				}
+			}
+		
+		}
+			
+	</script>
+	
+	<!-- ---------------------------- -->
+	
+	<!-- Countries tables, different one loaded between desktop and mobile -->
+	<!-- Mobile -->
+	
+	<br>
+	<div id="mobile-countries-table">
+	</div>
+	
+	<!-- ---------------------------- -->
+	<!-- Desktop -->
+
+	<div id="desktop-countries-table">
+	<table id="hello">
+		<tr>
+			<th class="table-header" onclick="sortTable(0)">Name</th>
+			<th class="table-header" onclick="sortTable(1)">Positive Cases</th>
+			<th class="table-header" onclick="sortTable(2)">Deaths</th>
+			<th class="table-header" onclick="sortTable(3)">Travel Restrictions</th>
+			<th class="table-header" onclick="sortTable(4)">Masks Required</th>
+		</tr>
+		<tbody id="desktop-countries-table-body" class="adjust">	
+		</tbody>
+	</table>
+	</div>
+	<br><br><br>
+	
+</body>
+</html>
