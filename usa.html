@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>US Resources - COVID-19 Travel Guide</title>
 	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 		body {
 			margin: 0;
 			background-color: #284D6D;
@@ -11,6 +12,7 @@
 			overflow: auto; 
 			font-family: Arial;
 		}
+
 		@media only screen and (max-width: 992px) { /* Transform resources table into hamburger on mobile, unlike other tables on page there's no alternates to switch between */
 			table, thead, tbody, tr, th, td {
 				display: block; text-align: left;
@@ -55,7 +57,7 @@
 			display: block;
 		}
 		@media only screen and (max-width: 992px) { /* Removes map on mobile */
-			#map img {
+			#map {
 				display: none;
 			}
 		}
@@ -63,6 +65,11 @@
 			#states-stats-mobile {
 				display: none;
 			}
+			#map {
+			display: block;
+			margin: auto;
+			}
+
 		}
 		
 		#states {
@@ -136,10 +143,13 @@
 		}
 		h1 {
 			text-align: center;
+			
 		}
 	</style>
-	<script>		
-	</script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="map.js"></script>
+	<script type="text/javascript" src="usa.js"></script>
+
 </head>
 <body>
 	<div id="header">
@@ -156,14 +166,18 @@
 	<table id="us-stats-desktop">
 		<tbody>
 			<tr>
-				<th class="table-header">Positive Cases</th>
-				<th class="table-header">Recovered Cases</th>
-				<th class="table-header">Deaths</th>
+				<th class="table-header">New Positive Cases</th>
+				<th class="table-header">Total Positive Cases</th>
+				<th class="table-header">Total Recovered</th>
+				<th class="table-header">New Deaths</th>
+				<th class="table-header">Total Deaths</th>
 			</tr>
 			<tr>
-				<th>7,790,263</th>
-				<th>4,998,377</th>
-				<th>217,130</th>
+				<th id="usaNewPos"></th>
+				<th id="usaPos"></th>
+				<th id="usaRec"></th>
+				<th id="usaNewDeath"></th>
+				<th id="usaDeath"></th>
 			</tr>
 		</tbody>
 	</table>
@@ -189,9 +203,9 @@
 	<!-- Map, make interactive later -->
 	
 	<br><br>
-	<div id="map">
-		<img src="https://i.imgur.com/E4tfCmh.png">
-	</div>
+
+	<div id="map"></div>
+	
 	
 	<!-- ------------------------------ -->
 	
