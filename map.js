@@ -1,4 +1,5 @@
 
+
 /*---FETCH STATE DATA AND DISPLAY MAP-----------------------------------------------------------------*/
 var stateNewPos = new Array();  
 var statePos = new Array();

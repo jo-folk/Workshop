@@ -5,7 +5,7 @@
 	<title>US Resources - COVID-19 Travel Guide</title>
 	<link rel="shortcut icon" href="images/favicon.ico"/>
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 		body {
 			margin: 0;
 			background-color: #284D6D;
@@ -24,12 +24,13 @@
 			display: inline;
 			padding: 1.2em;
 			font-size: 1.2em;
+			font-family: 'Source Sans Pro', sans-serif;
 		}
 		.links:hover {
 			background-color: #1D1D36;
 		}
 		#map {
-			width: 90em;
+			width: 90%;
 			margin: auto;
 		}
 		#states {
@@ -72,7 +73,7 @@
 		}
 		h1 {
 			text-align: center;
-			
+			font-family: 'Source Sans Pro', sans-serif;
 		}
 		#navlogo {
 			padding-left: 20px;
@@ -182,16 +183,14 @@
 		<tbody>
 			<tr>
 				<th class="table-header">New Positive Cases</th>
-				<th class="table-header">Total Positive Cases</th>
-				<th class="table-header">Total Recovered</th>
-				<th class="table-header">New Deaths</th>
-				<th class="table-header">Total Deaths</th>
-			</tr>
-			<tr>
 				<th id="usaNewPosM"></th>
+				<th class="table-header">Total Positive Cases</th>
 				<th id="usaPosM"></th>
+				<th class="table-header">Total Recovered</th>
 				<th id="usaRecM"></th>
+				<th class="table-header">New Deaths</th>
 				<th id="usaNewDeathM"></th>
+				<th class="table-header">Total Deaths</th>
 				<th id="usaDeathM"></th>
 			</tr>
 		</tbody>
