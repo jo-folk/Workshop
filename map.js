@@ -75,16 +75,16 @@ var statesArray = [
           // Sends request to server     
     request.onload = function() { // Occurs after send function above
         var result = request.response;
-        //console.log(result);
+        console.log(result);
         var posInc = result['positiveIncrease'];
         var pos = result['positive'];
         var deathInc = result['deathIncrease'];
         var death = result['death'];
 
-        stateNewPos.push(Number(posInc));
-        statePos.push(Number(pos));
-        stateNewDeath.push(Number(deathInc));
-        stateDeath.push(Number(death));
+        stateNewPos.push((posInc));
+        statePos.push((pos));
+        stateNewDeath.push((deathInc));
+        stateDeath.push((death));
 
         // Load Map
         google.charts.load('current', {
@@ -97,10 +97,10 @@ var statesArray = [
     x++;    
   }
 
-  //console.log(stateNewPos);
-  //console.log(statePos);
-  //console.log(stateNewDeath);
-  //console.log(stateDeath);
+  console.log(stateNewPos);
+  console.log(statePos);
+  console.log(stateNewDeath);
+  console.log(stateDeath);
 
 
   function drawVisualization() {
@@ -166,7 +166,7 @@ var statesArray = [
         region: "US", 
         resolution: "provinces",
         backgroundColor: '#284D6D',
-        colorAxis: {minValue : 0, maxValue : 13000, colors: ['#F9BC1F', '#C42924']},
+        colorAxis: {minValue : 0, maxValue : 13000, colors: ['#F9BC1F', '#C42924', '#561210']},
         
       };
   		geochart.draw(data, options);
