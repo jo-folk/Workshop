@@ -4,7 +4,6 @@ function mapFunction() {
 	var statePos = new Array();
 	var stateNewDeath = new Array();
 	var stateDeath = new Array();
-
 	var statesArray = [ // --- CHANGED POSITION OF FIRST FEW ABBREVIATIONS IN ARRAY --- //
 		'ak',
 		'al',
@@ -59,8 +58,7 @@ function mapFunction() {
 		'wi',
 		'wy'
 	];
-
-	  var x = 0;
+	var x = 0;
 	  
 		// REFERENCE POINT
 		// let requestURL = 'https://api.covidtracking.com/v1/states/' + statesArray[x] + '/current.json';
@@ -105,7 +103,19 @@ function mapFunction() {
 	  console.log(stateNewPos);
 	  //console.log(statePos);
 	  //console.log(stateNewDeath);
-	  //console.log(stateDeath);
+      //console.log(stateDeath);
+      
+    var max;
+    var min;
+
+    for(w=0; w<=55; w++){
+        if (max >= stateNewPos[w]){
+         max = stateNewPos[w];
+        }
+        if (min <= stateNewPos[w]){
+            min = stateNewPos[w];
+        }
+    }
 
 	  function drawVisualization() { // --- CHANGED NUMBERS TO MATCH NEW API STRUCTURE --- //
 		var data = google.visualization.arrayToDataTable([
@@ -170,7 +180,7 @@ function mapFunction() {
 			region: "US", 
 			resolution: "provinces",
 			backgroundColor: '#284D6D',
-			colorAxis: {minValue : 0, maxValue : 13000, colors: ['#F9BC1F', '#C42924']},
+			colorAxis: {minValue : min, maxValue : max, colors: ['#F9BC1F', '#C42924']},
 			
 		  };
 			geochart.draw(data, options);
