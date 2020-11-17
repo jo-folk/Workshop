@@ -26,6 +26,9 @@
 			width: 90%;
 			margin: auto;
 		}
+		#map div {
+			margin: auto;
+		}
 		#states {
 			width: 90%;
 			display: block;
@@ -74,6 +77,20 @@
   			width: 50px;
   			float:left;
 		}
+		#counties-tables {
+			margin: auto;
+		}
+		
+		#counties-tables-select {
+			display: flex;
+			width: 90%;
+			margin: auto;	
+		}
+		
+		#counties-tables-select select {
+			width: 10%;
+			margin-right: .5em;
+		}
 			
 		@media only screen and (max-width: 992px) { 
 			table, thead, tbody, tr, th, td {
@@ -118,6 +135,26 @@
 			#us-stats-desktop { /* Different tables for overall US stats displayed on desktop and mobile */
 				display: none;
 			}
+			#desktop-table {
+				display: none;
+			}
+			#counties-tables-select {
+				display: block;
+				width: 90%;
+				margin: auto;	
+			}
+			#counties-tables-select select {
+				width: 100%;
+				font-size: 3em;
+				text-align: center;
+			}
+			#counties-tables-select select {
+				width: 100%;
+				font-size: 3em;
+			}
+			#counties-tables-select select:nth-child(2) {
+				margin-top: .5em;
+			}
 		}
 		@media only screen and (min-width: 993px) { /* Removes mobile table on desktop */
 			#states-stats-mobile {
@@ -131,6 +168,9 @@
 
 		@media only screen and (min-width: 992px) {
 			#us-stats-mobile { /* Different tables for overall US stats displayed on desktop and mobile */
+				display: none;
+			}
+			#mobile-table {
 				display: none;
 			}
 		}
