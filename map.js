@@ -6,7 +6,7 @@ function mapFunction() {
 	var stateDeath = new Array();
 	var statesArray = [ // --- CHANGED POSITION OF FIRST FEW ABBREVIATIONS IN ARRAY --- //
 			'Alaska', 
-			'Alabama', 
+			'Alabama',
 			'Arkansas', 
 			'AS', 
 			'Arizona',
@@ -79,19 +79,21 @@ function mapFunction() {
 			var result = request.response;
 			console.log(result);
 			
-			while (x <= 55) { // --- MOVED WHILE LOOP --- //
-			var posInc = result[x]['positiveIncrease']; // --- ADDED [X] BECAUSE OF API STRUCTURE --- //
-			var pos = result[x]['positive'];
-			var deathInc = result[x]['deathIncrease'];
-			var death = result[x]['death'];
+			while (x <= 55) { 
+				var posInc = result[x]['positiveIncrease']; 
+				var pos = result[x]['positive'];
+				var deathInc = result[x]['deathIncrease'];
+				var death = result[x]['death'];
 
-			stateNewPos.push(Number(posInc));
-			statePos.push(Number(pos));
-			stateNewDeath.push(Number(deathInc));
-			stateDeath.push(Number(death));
+				stateNewPos.push(Number(posInc));
+				statePos.push(Number(pos));
+				stateNewDeath.push(Number(deathInc));
+				stateDeath.push(Number(death));
 	
-			x++; 
+				x++; 
 			}
+
+
 			
 			// Load Map
 			google.charts.load('current', {
@@ -100,9 +102,9 @@ function mapFunction() {
 			});
 			google.charts.setOnLoadCallback(drawVisualization);  
 
+
 		}   
 
-      
     var max;
     var min;
 
@@ -184,7 +186,7 @@ function mapFunction() {
 			region: "US", 
 			resolution: "provinces",
 			backgroundColor: '#284D6D',
-			colorAxis: {minValue : min, maxValue : max, colors: ['#F9BC1F', '#C42924']},
+			colorAxis: {minValue : min, maxValue : max, colors: ['#F9BC1F', '#C42924', '#561210']},
 			
 		};
         geochart.draw(data, options);
