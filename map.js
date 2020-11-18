@@ -59,7 +59,6 @@ function mapFunction() {
 		'wy'
 	];
 	var x = 0;
-	  
 		// REFERENCE POINT
 		// let requestURL = 'https://api.covidtracking.com/v1/states/' + statesArray[x] + '/current.json';
 		let requestURL = 'https://api.covidtracking.com/v1/states/current.json'; // --- CHANGED THE API --- //
@@ -173,19 +172,31 @@ function mapFunction() {
 			['US-WY', stateNewPos[55], statePos[55]]
 		  ]);
 
-			var geochart = new google.visualization.GeoChart(
-		   document.getElementById('map'));
-		  var options = {
+		var geochart = new google.visualization.GeoChart(
+        document.getElementById('map'));
+        
+		var options = {
 			width: 950, 
 			region: "US", 
 			resolution: "provinces",
 			backgroundColor: '#284D6D',
 			colorAxis: {minValue : min, maxValue : max, colors: ['#F9BC1F', '#C42924']},
 			
-		  };
-			geochart.draw(data, options);
+		};
+        geochart.draw(data, options);
+        google.visualization.events.trigger(geochart, 'regionClick', { region:'State' });
+        google.visualization.events.addListener(geochart, 'select', selectHandler);
+       
+       function selectHandler(){
+        console.log('state row' + JSON.stringify(geochart.getSelection())+' was selected');
+        var t = geochart.getSelection(['state'])[0].row;
+        console.log(t);
+        console.log(data[t]);
+        //return data[t]['State'];
+        }
+    }
 }
-}
+
 
 var errorTest = document.getElementById("google-visualization-errors-all-1");
 		// var m = 1;
