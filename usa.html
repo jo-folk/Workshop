@@ -31,26 +31,32 @@
 			console.log(placeholder);
 			countiesSelectOutput();
 		}
-		function countiesSelectOutput() {
-			var state = document.getElementById("state").value;
-			var county = document.getElementById("county");
+	}
+		
+
+
+
+	function countiesSelectOutput() {
+		var state = document.getElementById("state").value;
+		var county = document.getElementById("county");
 						
-			if (county.childElementCount > 1) {
-				while (county.firstChild) {
-					county.removeChild(county.firstChild);
-				}
+		if (county.childElementCount > 1) {
+			while (county.firstChild) {
+				county.removeChild(county.firstChild);
 			}
-			
-			for (x = 0; x < placeholder.length; x++) {
-				if (state == placeholder[x].stateName) {
-					newOption = document.createElement("option");
-					newOption.innerHTML = placeholder[x].countyName;
-					newOption.value = placeholder[x].countyName;
-					document.getElementById("county").appendChild(newOption);
-				}
-			}
-			countiesTableOutput();
 		}
+			
+		for (x = 0; x < placeholder.length; x++) {
+			if (state == placeholder[x].stateName) {
+				newOption = document.createElement("option");
+				newOption.innerHTML = placeholder[x].countyName;
+				newOption.value = placeholder[x].countyName;
+				document.getElementById("county").appendChild(newOption);
+			}
+		}
+			countiesTableOutput();
+	}
+	
 	
 		function countiesTableOutput() {
 			var countyValue = document.getElementById("county").value;
@@ -78,9 +84,7 @@
 				}
 			}	
 		}
-
 		countiesTable();
-		
 	</script>
 </head>
 <body onload="mapFunction(); usaTable()">

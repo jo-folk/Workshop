@@ -10,7 +10,6 @@ function usaTable() {
   req.send(); 
   req.onload = function() { // Occurs after send function above
       var result = req.response;
-      console.log(result);
 
     /*DESKTOP ---------------------------------------------------------------------------*/
       usaNewPos = document.getElementById("usaNewPos");

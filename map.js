@@ -89,8 +89,7 @@ function mapFunction() {
 			statePos.push(Number(pos));
 			stateNewDeath.push(Number(deathInc));
 			stateDeath.push(Number(death));
-			
-			// console.log(x);
+	
 			x++; 
 			}
 			
@@ -103,10 +102,6 @@ function mapFunction() {
 
 		}   
 
-	  //console.log(stateNewPos);
-	  //console.log(statePos);
-	  //console.log(stateNewDeath);
-      //console.log(stateDeath);
       
     var max;
     var min;
@@ -194,11 +189,15 @@ function mapFunction() {
 		};
         geochart.draw(data, options);
         google.visualization.events.trigger(geochart, 'regionClick', { region:'State' });
-        google.visualization.events.addListener(geochart, 'select', selectHandler);
+		google.visualization.events.addListener(geochart, 'select', selectHandler);
        
        function selectHandler(){
         var t = geochart.getSelection(['state'])[0].row;
 		console.log(statesArray[t]);
+		var dropdown = document.getElementById("state");
+		dropdown.value = (statesArray[t]);
+		countiesSelectOutput();
+
         }
     }
 }
@@ -211,4 +210,4 @@ var errorTest = document.getElementById("google-visualization-errors-all-1");
 			console.log("Error, reloading table"); mapFunction();
 		}	  
 	  
-	  
+
