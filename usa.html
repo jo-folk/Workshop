@@ -17,27 +17,20 @@
 	
 		let requestURL = 'https://data.covidactnow.org/latest/us/counties.WEAK_INTERVENTION.json';
 		// API URL
-		
 		let request = new XMLHttpRequest(); 
 		// XMLHttpRequest (XHR) object assigned to variable
-		
 		request.open('GET', requestURL); 
 		// XMLHttpRequest.open() function, first argument is a method and second is a URL (string variable here)
-		
 		request.responseType = 'json'; 
 		// "The response is a JavaScript object created by parsing the contents of received data as JSON."
-		
 		request.send(); 
 		// Sends request to server
-		
 		request.onload = function() { // Occurs after send function above
 			const result = request.response;
 			placeholder = request.response;
 			console.log(placeholder);
 			countiesSelectOutput();
 		}
-	}
-		
 		function countiesSelectOutput() {
 			var state = document.getElementById("state").value;
 			var county = document.getElementById("county");
