@@ -5,7 +5,6 @@ function mapFunction() {
 	var stateNewDeath = new Array();
 	var stateDeath = new Array();
 	var statesArray = [ // --- CHANGED POSITION OF FIRST FEW ABBREVIATIONS IN ARRAY --- //
-		['US-AK', stateNewPos[0], statePos[0]],
 			'Alaska', 
 			'Arkansas', 
 			'AS', 
