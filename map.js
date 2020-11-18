@@ -197,11 +197,8 @@ function mapFunction() {
         google.visualization.events.addListener(geochart, 'select', selectHandler);
        
        function selectHandler(){
-        console.log('state row' + JSON.stringify(geochart.getSelection())+' was selected');
         var t = geochart.getSelection(['state'])[0].row;
-        console.log(t);
 		console.log(statesArray[t]);
-        //return data[t]['State'];
         }
     }
 }
