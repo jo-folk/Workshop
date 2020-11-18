@@ -184,7 +184,7 @@ function mapFunction() {
 			
 		  };
 			geochart.draw(data, options);
-	  }
+}
 }
 
 var errorTest = document.getElementById("google-visualization-errors-all-1");
